@@ -2,7 +2,6 @@ import { useState } from "react";
 import {auth} from "../../Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [error, setError] = useState(false);
@@ -19,6 +18,7 @@ export const Login = () => {
         // Signed up
         const user = userCredential.user;
         console.log(user);
+        navigate("/")
       })
       .catch((error) => {
         setError(true);
@@ -29,8 +29,8 @@ export const Login = () => {
       <div>
         <h1>Login</h1>
         <form onSubmit={handleLogin}>
-          <input type="email" placeholder="email" onChange={e=>setEmail(e.target.value)}></input>
-          <input type="password" placeholder="contraseña" onChange={e=>setPassword(e.target.value)}></input>
+          <input type="email" placeholder="email" onChange={e=>setEmail(e.target.value)} required></input>
+          <input type="password" placeholder="contraseña" onChange={e=>setPassword(e.target.value)} required></input>
           <button type="submit">Login</button>
           {error && <span>Email o contraseña incorrectos</span>}
         </form>
