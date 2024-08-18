@@ -2,7 +2,7 @@ import { createContext, useReducer } from "react";
 import AuthReducer from "./AuthReducer";
 
 const INITIAL_STATE = {
-  currentUser: null;
+  currentUser: null,
 };
 
 export const AuthContext = createContext(INITIAL_STATE);
