@@ -5,6 +5,7 @@ import { Header } from './components/Layout/Header';
 import {Menu} from './components/Layout/Menu';
 import { Home } from './components/Layout/Home';
 import {Sidebar} from './components/Layout/Sidebar';
+import { Login } from './components/Auth/Login';
 import {Footer } from './components/Layout/Footer';
 
 
@@ -16,6 +17,7 @@ function App() {
         <Menu />
         <Home />
         <Sidebar />
+        <Login />
         <Footer />
       </div>
   );
