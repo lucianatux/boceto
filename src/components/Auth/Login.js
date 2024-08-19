@@ -17,17 +17,19 @@ export const Login = () => {
     e.preventDefault();
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        console.log(user);
-        dispatch({type:"LOGIN", payload:user})
-        navigate("/")
-      })
-      .catch((error) => {
-        setError(true);
-      });
-  };
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user);
+            dispatch({ type: "LOGIN", payload: user });
+            setError(false);  // Reinicia el estado de error
+            navigate("/");
+        })
+        .catch((error) => {
+            console.error("Error during login:", error);
+            setError(true);
+        });
+};
+
   return (
     <div className="login">
       <div>
