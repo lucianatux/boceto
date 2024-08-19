@@ -22,7 +22,7 @@ export const Login = () => {
             console.log(user);
             dispatch({ type: "LOGIN", payload: user });
             setError(false);  // Reinicia el estado de error
-            navigate("/");
+            navigate("/articleform");
         })
         .catch((error) => {
             console.error("Error during login:", error);
