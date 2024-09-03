@@ -4,25 +4,27 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Header } from './components/Layout/Header';
 import { Menu } from './components/Layout/Menu';
 import { Home } from './components/Layout/Home';
-import { Sidebar } from './components/Layout/Sidebar';
 import { Card } from './components/Layout/Card';
 import { Login } from './components/Auth/Login';
 import { ArticleForm } from './components/Articles/ArticleForm';
 import { Footer } from './components/Layout/Footer';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from "./components/Auth/AuthContext";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
+  const location = useLocation();
 
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/login" />;
   };
 
+  const isLoginRoute = location.pathname === "/login";
+
   return (
     <div className="App">
-      <Header />
-      <Menu />
+       {!isLoginRoute && <Header />}
+       {!isLoginRoute && <Menu />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -35,8 +37,7 @@ function App() {
           } 
         />
       </Routes>
-      <Card/>
-      <Sidebar />
+      {!isLoginRoute && <Card />}
       <Footer />
     </div>
   );
