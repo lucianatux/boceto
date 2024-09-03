@@ -32,12 +32,12 @@ export const Login = () => {
 
   return (
     <div className="login">
-      <div>
-        <h1>Login</h1>
+      <div className="login-div">
+        <h4>Acceso VIP a la edición</h4>
         <form onSubmit={handleLogin}>
           <input type="email" placeholder="email" onChange={e=>setEmail(e.target.value)} required></input>
           <input type="password" placeholder="contraseña" onChange={e=>setPassword(e.target.value)} required></input>
-          <button type="submit">Login</button>
+          <button type="submit">Entrar</button>
           {error && <span>Email o contraseña incorrectos</span>}
         </form>
       </div>
