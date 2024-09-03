@@ -71,3 +71,22 @@ a {
 
   }
 }
+
+/*************************** Menu *********************/
+.home{
+display: flex;
+text-align: center;
+flex-direction: column;
+align-items: center;
+
+.carousel{
+  width: 60vw;
+  height: 60vh;
+}
+@media(max-width:768px){
+  .carousel{
+    width: 90vw;
+    height: 90vh;
+  }
+}
+}
