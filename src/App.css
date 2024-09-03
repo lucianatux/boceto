@@ -100,19 +100,29 @@ align-items: center;
   }
 }
 }
-/*************************** Menu *********************/
+/*************************** Footer *********************/
 .footer{
   background-color: #ececec;
   height: 20vh;
+  padding: 10px 20px;
 
+  .grouped-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
   
 .social-icon {
   display: inline-block;
   margin-left: 14px;
+  margin-right: 20px;
 }
 .social-icon a {
-  width: 42px;
-  height: 42px;
+  width: 52px;
+  height: 52px;
   background: #333;
   display: inline-flex;
   border-radius: 50%;
@@ -124,8 +134,8 @@ align-items: center;
 }
 .social-icon a::before {
   content: "";
-  width: 42px;
-  height: 42px;
+  width: 52px;
+  height: 52px;
   position: absolute;
   background-color: #f0f0f0;
   border-radius: 50%;
@@ -143,5 +153,25 @@ align-items: center;
 .social-icon a:hover img {
   filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%)
     hue-rotate(346deg) brightness(95%) contrast(86%);
+}
+}
+
+
+
+
+
+/*************************** Responsive *********************/
+
+@media(max-width: 768px){
+.footer{
+  height: 30vh;
+}
+
+.grouped-items {
+  width: 50%;
+}
+
+.social-icons {
+  width: 50%;
 }
 }
