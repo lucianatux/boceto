@@ -1,11 +1,14 @@
 import { Navbar, Nav, Dropdown } from "react-bootstrap";
+import logo from '../../assets/logo.png'
+
 
 export const Menu = () => {
     return (
       <div className="menu">
         <div>
-          <Navbar bg="light" expand="lg" className="p-3">
-        <Navbar.Brand href="#home">Marca</Navbar.Brand>
+          <Navbar bg="light" expand="lg" className="px-2" >
+        <Navbar.Brand href="#home">(otra opción)Título <img className='logo' src={logo} alt=""/>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="d-flex w-100 justify-content-center">   
@@ -16,7 +19,7 @@ export const Menu = () => {
             <Nav.Link href="#contacto">Contacto</Nav.Link>   
 
             <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
+              <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                 Dropdown
               </Dropdown.Toggle>
               <Dropdown.Menu>
@@ -27,6 +30,8 @@ export const Menu = () => {
                 <Dropdown.Item href="#action/3.3">Algo más</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+            <Nav.Link href="#etc1">Etcétera</Nav.Link>   
+
           </Nav>
         </Navbar.Collapse>
     </Navbar>

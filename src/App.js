@@ -5,7 +5,6 @@ import { Header } from './components/Layout/Header';
 import { Menu } from './components/Layout/Menu';
 import { Home } from './components/Layout/Home';
 import { Sidebar } from './components/Layout/Sidebar';
-import { New } from './components/Layout/New.js';
 import { Card } from './components/Layout/Card';
 import { Login } from './components/Auth/Login';
 import { ArticleForm } from './components/Articles/ArticleForm';
@@ -37,7 +36,6 @@ function App() {
         />
       </Routes>
       <Card/>
-      <New/>
       <Sidebar />
       <Footer />
     </div>
