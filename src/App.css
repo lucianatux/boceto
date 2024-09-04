@@ -82,7 +82,7 @@ a {
   }
 }
 
-/*************************** Menu *********************/
+/*************************** Home *********************/
 .home{
 display: flex;
 text-align: center;
@@ -117,12 +117,15 @@ align-items: center;
   
 .social-icon {
   display: inline-block;
-  margin-left: 14px;
-  margin-right: 20px;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+
 }
 .social-icon a {
   width: 52px;
   height: 52px;
+  margin: 5px 10px;
   background: #333;
   display: inline-flex;
   border-radius: 50%;
@@ -162,7 +165,7 @@ align-items: center;
 
 /*************************** Responsive *********************/
 
-@media(max-width: 768px){
+@media(max-width: 568px){
 .footer{
   height: 30vh;
 }
@@ -171,7 +174,11 @@ align-items: center;
   width: 50%;
 }
 
-.social-icons {
+.social-icon {
   width: 50%;
+}
+.social-icon a{
+  width: 42px !important;
+  height: 42px !important;
 }
 }

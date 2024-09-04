@@ -12,13 +12,13 @@ export const Footer = () => {
         
 
     <Container fluid>
-      <div className="d-flex justify-content-between align-items-center flex-wrap">
+      <div className="d-flex justify-content-evenly align-items-center flex-wrap">
         <div className="grouped-items">
         <h3>Título</h3>
        <img className="logo" src={logo} alt="" />
        <p>Lorem ipsum dolor sit amet</p>
         </div>
-        <div className="social-icon">
+        <div className="social-icon d-flex justify-content-center align-items-center flex-wrap">
             <a
               href="https://www.youtube.com/@elojocuantico-espaciocreat4572"
               target="_blank"
