@@ -6,7 +6,6 @@ import { Menu } from './components/Layout/Menu';
 import { Home } from './components/Layout/Home';
 import { Card } from './components/Layout/Card';
 import { Login } from './components/Auth/Login';
-import { CardForm } from './components/Cards/CardForm';
 import { CardList } from './components/Cards/CardList';
 import { ArticleForm } from './components/Articles/ArticleForm';
 import { Footer } from './components/Layout/Footer';
@@ -40,7 +39,6 @@ function App() {
         />
       </Routes>
       {!isLoginRoute && <Card />}
-      {!isLoginRoute && <CardForm />}
       {!isLoginRoute && <CardList />}
 
       <Footer />
