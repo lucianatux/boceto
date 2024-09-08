@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Header } from './components/Layout/Header';
 import { Menu } from './components/Layout/Menu';
 import { Home } from './components/Layout/Home';
-import { Card } from './components/Layout/Card';
 import { Login } from './components/Auth/Login';
 import { CardList } from './components/Cards/CardList';
 import { ArticleForm } from './components/Articles/ArticleForm';
@@ -38,7 +37,6 @@ function App() {
           } 
         />
       </Routes>
-      {!isLoginRoute && <Card />}
       {!isLoginRoute && <CardList />}
 
       <Footer />

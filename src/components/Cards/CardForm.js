@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-export const CardForm = () => {
-  const initialState = {
+export const CardForm = (props) => {
+  const initialStateValues = {
     url: "",
     name: "",
     description: "",
   };
 
-  const [values, setValues] = useState(initialState);
+  const [values, setValues] = useState(initialStateValues);
 
   const handleInputChange = e => {
     const {name, value} = e.target;
@@ -19,7 +19,8 @@ export const CardForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
+    props.addOrEditCard(values);
+    setValues({...initialStateValues})
     /*if (!validURL(website.url))
       return toast("invalid url", { type: "warning", autoClose: 1000 });
 
@@ -56,6 +57,7 @@ export const CardForm = () => {
               className="form-control"
               placeholder="https://someurl.xyz"
               name="url"
+              value={values.url}
               onChange={handleInputChange}
             />
           </div>
@@ -64,9 +66,10 @@ export const CardForm = () => {
           <div className="input-group">
             <input
               type="text"
-              name="name"
-              placeholder="Website Name"
               className="form-control mb-3"
+              placeholder="Website Name"
+              name="name"
+              value={values.name}
               onChange={handleInputChange}
             />
           </div>
@@ -77,6 +80,7 @@ export const CardForm = () => {
             className="form-control mb-3"
             placeholder="Write a Description"
             name="description"
+            value={values.description}
             onChange={handleInputChange}
           ></textarea>
 
