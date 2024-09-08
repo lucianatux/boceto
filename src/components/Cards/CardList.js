@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { CardForm } from "./CardForm";
 import { db } from '../../Firebase';
-import { collection, doc, setDoc, onSnapshot } from "firebase/firestore"; 
+import { collection, doc, setDoc, onSnapshot, deleteDoc } from "firebase/firestore"; 
 
 export const CardList = () => {
 
@@ -18,6 +18,19 @@ export const CardList = () => {
       console.error("Error adding document: ", error);
     }
   }
+
+
+  const onDeleteCard = async (id) => {
+    if (window.confirm('Are you sure you want to delete this card?')) {
+      try {
+        const cardDocRef = doc(db, 'cards', id); 
+        await deleteDoc(cardDocRef); 
+        console.log("Card deleted");
+      } catch (error) {
+        console.error("Error deleting card: ", error);
+      }
+    }
+  };
 
  // Función para obtener todas las tarjetas
   const getCards = () => {
@@ -48,9 +61,12 @@ export const CardList = () => {
       <CardForm addOrEditCard={addOrEditCard} />
       <div className="col-md-8">
       {cards.map((card) =>(
-        <div className="card mb-1">
+        <div className="card mb-1" key={card.id}>
           <div className="card-body">
-          <h4>{card.name}</h4>
+            <div className="d-flex justify-content-between">
+            <h4>{card.name}</h4>
+            <i className="material-icons" onClick={()=> onDeleteCard(card.id)}>close</i>
+            </div>
           <p>{card.description}</p>
           <a href={card.url} target="_blank" rel="noreferrer">Go to website</a>
           </div>
