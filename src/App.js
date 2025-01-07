@@ -10,6 +10,7 @@ import { ArticleForm } from './components/Articles/ArticleForm';
 import { Footer } from './components/Layout/Footer';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from "./components/Auth/AuthContext";
+import { VideoList} from './components/Content/Videos/VideoList';
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -36,6 +37,7 @@ function App() {
             </RequireAuth>
           } 
         />
+         <Route path="/videos" element={<VideoList />} />
       </Routes>
       {!isLoginRoute && <CardList />}
 
