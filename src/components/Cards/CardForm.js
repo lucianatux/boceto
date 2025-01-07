@@ -43,10 +43,10 @@ export const CardForm = (props) => {
   };
 
   return (
-    <div className="card-form">
+    <div className="card-form m-5 p-5">
       <div>
         <h1>Card Form</h1>
-        <form onSubmit={handleSubmit} className="card card-body bg-secondary">
+        <form onSubmit={handleSubmit} className="card card-body bg-secondary text-light">
           <label htmlFor="url">Paste your URL</label>
           <div className="input-group mb-3">
             <div className="input-group-text bg-light">
@@ -84,7 +84,7 @@ export const CardForm = (props) => {
             onChange={handleInputChange}
           ></textarea>
 
-          <button className="btn btn-primary btn-block">button</button>
+          <button className="btn btn-primary btn-block">Send</button>
         </form>
       </div>
     </div>

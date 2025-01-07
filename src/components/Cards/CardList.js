@@ -57,7 +57,7 @@ export const CardList = () => {
  
 
   return (
-    <div className="card-list">
+    <div className="card-list m-5 p-5 ">
       <CardForm addOrEditCard={addOrEditCard} />
       <div className="col-md-8">
       {cards.map((card) =>(
