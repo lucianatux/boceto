@@ -1,8 +1,14 @@
 import { useState, useEffect, useContext } from "react";
 import { CardForm } from "./CardForm";
-import { db } from '../../Firebase';
+import { db } from "../../Firebase";
 import { AuthContext } from "../Auth/AuthContext";
-import { collection, doc, setDoc, onSnapshot, deleteDoc } from "firebase/firestore"; 
+import {
+  collection,
+  doc,
+  setDoc,
+  onSnapshot,
+  deleteDoc,
+} from "firebase/firestore";
 
 export const CardList = () => {
   const [cards, setCards] = useState([]);
@@ -11,15 +17,19 @@ export const CardList = () => {
 
   useEffect(() => {
     const cardsCollectionRef = collection(db, "cards");
-    const unsubscribe = onSnapshot(cardsCollectionRef, (querySnapshot) => {
-      const docs = [];
-      querySnapshot.forEach((doc) => {
-        docs.push({ ...doc.data(), id: doc.id });
-      });
-      setCards(docs);
-    }, (error) => {
-      console.error("Error fetching cards: ", error);
-    });
+    const unsubscribe = onSnapshot(
+      cardsCollectionRef,
+      (querySnapshot) => {
+        const docs = [];
+        querySnapshot.forEach((doc) => {
+          docs.push({ ...doc.data(), id: doc.id });
+        });
+        setCards(docs);
+      },
+      (error) => {
+        console.error("Error fetching cards: ", error);
+      }
+    );
     return () => unsubscribe();
   }, []);
 
@@ -51,15 +61,17 @@ export const CardList = () => {
     }
   };
 
-  const currentCard = currentId ? cards.find((card) => card.id === currentId) : null;
+  const currentCard = currentId
+    ? cards.find((card) => card.id === currentId)
+    : null;
 
   return (
     <div className="card-list m-5 p-5">
       {currentUser && ( // ✅ solo se muestra si está logueado
-        <CardForm 
-          addOrEditCard={addOrEditCard} 
-          currentId={currentId} 
-          currentCard={currentCard || { url: "", name: "", description: "" }} 
+        <CardForm
+          addOrEditCard={addOrEditCard}
+          currentId={currentId}
+          currentCard={currentCard || { url: "", name: "", description: "" }}
         />
       )}
 
@@ -71,7 +83,7 @@ export const CardList = () => {
                 <h4>{card.name}</h4>
                 {currentUser && ( // ✅ solo los ve en modo edición
                   <div>
-                    <i 
+                    <i
                       className="material-icons me-2 text-primary"
                       style={{ cursor: "pointer" }}
                       onClick={() => setCurrentId(card.id)}
@@ -79,19 +91,29 @@ export const CardList = () => {
                     >
                       edit
                     </i>
-                    <i 
+                    <i
                       className="material-icons text-danger"
                       style={{ cursor: "pointer" }}
                       onClick={() => onDeleteCard(card.id)}
                       title="Eliminar"
                     >
-                      close
+                      delete
                     </i>
                   </div>
                 )}
               </div>
+              {/* Imagen */}
+              {card.image && (
+                <img
+                  src={card.image}
+                  alt={card.name}
+                  className="img-fluid mb-2"
+                />
+              )}
               <p>{card.description}</p>
-              <a href={card.url} target="_blank" rel="noreferrer">Go to website</a>
+              <a href={card.url} target="_blank" rel="noreferrer">
+                Go to website
+              </a>
             </div>
           </div>
         ))}
