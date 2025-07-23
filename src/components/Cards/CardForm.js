@@ -1,52 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export const CardForm = (props) => {
-  const initialStateValues = {
-    url: "",
-    name: "",
-    description: "",
+export const CardForm = ({ addOrEditCard, currentId, currentCard }) => {
+  const [values, setValues] = useState({ url: "", name: "", description: "" });
+  const [error, setError] = useState(""); // Si querés, para mensajes de validación
+
+  useEffect(() => {
+    if (currentId === "") {
+      setValues({ url: "", name: "", description: "" });
+      setError("");
+    } else {
+      setValues({ ...currentCard });
+      setError("");
+    }
+  }, [currentId, currentCard]); // ✅ Ahora el warning desaparece
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
   };
-
-  const [values, setValues] = useState(initialStateValues);
-
-  const handleInputChange = e => {
-    const {name, value} = e.target;
-    setValues({...values, [name]: value});
-  }
-  
-  /*({ target: { name, value } }) =>
-    setWebsite({ ...website, [name]: value });*/
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    props.addOrEditCard(values);
-    setValues({...initialStateValues})
-    /*if (!validURL(website.url))
-      return toast("invalid url", { type: "warning", autoClose: 1000 });
 
-    if (!params.id) {
-      await saveWebsite(website);
-      toast("New Link Added", {
-        type: "success",
-      });
-    } else {
-      await updateWebsite(params.id, website);
-      toast("Updated", {
-        type: "success",
-      });
+    // Validación rápida
+    if (!values.url || !values.name) {
+      setError("Por favor completá los campos obligatorios.");
+      return;
     }
 
-    // Clean Form
-    setWebsite(initialState);
-    navigate("/");
-    */
+    await addOrEditCard(values);
+    setValues({ url: "", name: "", description: "" });
+    setError("");
   };
 
   return (
     <div className="card-form m-5 p-5">
       <div>
         <h1>Card Form</h1>
-        <form onSubmit={handleSubmit} className="card card-body bg-secondary text-light">
+        <form
+          onSubmit={handleSubmit}
+          className="card card-body bg-secondary text-light"
+        >
           <label htmlFor="url">Paste your URL</label>
           <div className="input-group mb-3">
             <div className="input-group-text bg-light">
@@ -63,16 +57,14 @@ export const CardForm = (props) => {
           </div>
 
           <label htmlFor="name">Website Name:</label>
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control mb-3"
-              placeholder="Website Name"
-              name="name"
-              value={values.name}
-              onChange={handleInputChange}
-            />
-          </div>
+          <input
+            type="text"
+            className="form-control mb-3"
+            placeholder="Website Name"
+            name="name"
+            value={values.name}
+            onChange={handleInputChange}
+          />
 
           <label htmlFor="description">Write a Description:</label>
           <textarea
@@ -84,7 +76,11 @@ export const CardForm = (props) => {
             onChange={handleInputChange}
           ></textarea>
 
-          <button className="btn btn-primary btn-block">Send</button>
+          {error && <small className="text-warning">{error}</small>}
+
+          <button className="btn btn-primary btn-block">
+            {currentId ? "Actualizar" : "Enviar"}
+          </button>
         </form>
       </div>
     </div>

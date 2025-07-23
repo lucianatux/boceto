@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# 🌱 Proyecto React + Firebase: Página web como regalo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una página web hecha con **React** y **Firebase**, pensada como regalo para mi papá.\
+Tiene contenido dinámico (cards con links, imágenes, descripciones) y un modo de edición solo accesible para nosotros, protegido por login.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## ✨ Características principales
 
-### `npm start`
+✅ Página de inicio con carrusel de imágenes.\
+✅ Cards editables y eliminables desde la propia web.\
+✅ Modo edición (solo para usuarios autenticados).\
+✅ Login con Firebase Authentication.\
+✅ Datos en tiempo real con Firestore.\
+✅ Subida de imágenes a Firebase Storage.\
+✅ Diseño responsivo usando React-Bootstrap.\
+✅ Estructura modular y escalable.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🧬 Estructura del proyecto
 
-### `npm test`
+```plaintext
+/src
+  /components
+    /Auth
+      AuthContext.js         ← Contexto global de autenticación
+      Login.js               ← Formulario de login
+    /Cards
+      CardForm.js            ← Formulario para crear cards
+      CardList.js            ← Lista de cards (lee y borra)
+      EditableCard.js        ← Permite editar cards existentes
+    /Layout
+      Header.js              ← Encabezado con logo y frase
+      Footer.js              ← Footer con redes sociales
+      Menu.js                ← Menú de navegación
+      Home.js                ← Portada con carrusel
+    /Content
+      /Videos
+        VideoList.js         ← Lista de videos
+    /Articles
+      ArticleForm.js         ← Formulario para artículos
+  /assets                    ← Imágenes y logos
+  App.js                     ← Rutas y layout principal
+  index.js                   ← Punto de entrada
+  firebase.js                ← Configuración de Firebase
+  App.css / index.css        ← Estilos globales
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ⚙️ Tecnologías usadas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- React Router DOM
+- React-Bootstrap
+- Firebase (Auth, Firestore, Storage)
+- Context API (para manejo de estado global)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚀 Instalación y ejecución
 
-### `npm run eject`
+1. Clonar el repositorio:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+git clone <url-del-repo>
+cd <carpeta>
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Instalar dependencias:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. Crear archivo `.env` con tu clave de Firebase:
 
-## Learn More
+```env
+REACT_APP_FIREBASE_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Ejecutar el proyecto:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm start
+```
 
-### Code Splitting
+La web se abrirá en [http://localhost:3000](http://localhost:3000).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 🔑 Flujo de la aplicación
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Usuario visita la web (`/`): ve Home, Menu, Footer y lista de cards.
+- Si entra a `/login`, puede loguearse (sólo el autor).
+- Si está logueado:
+  - Ve el botón “Salir de modo edición” en el header.
+  - Puede agregar, editar y eliminar cards.
+  - Puede acceder a `/articleform` para cargar artículos.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## ✏️ Cosas pendientes / mejoras
 
-### Advanced Configuration
+- Agregar sección de comentarios de la gente.
+- Mejorar diseño visual (estilos y detalles).
+- Loader mientras cargan datos.
+- Validaciones de formulario.
+- Mensajes de éxito / error.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## ❤️ Autor
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Hecho con cariño por Luciana, como regalo para su papá. 🌱✨

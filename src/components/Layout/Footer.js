@@ -1,5 +1,5 @@
-import facebookIcon from "../../assets/nav-icon4.svg";
-import youtubeIcon from "../../assets/nav-icon5.svg";
+import facebookIcon from "../../assets/iconos/nav-icon4.svg";
+import youtubeIcon from "../../assets/iconos/nav-icon5.svg";
 import logo from "../../assets/logo.png";
 import { Container} from 'react-bootstrap';
 
