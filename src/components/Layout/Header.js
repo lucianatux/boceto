@@ -14,8 +14,8 @@ export const Header = () => {
 
   return (
     <header className="header">
-      <div className="d-flex justify-content-center align-items-start header-content">
-        <h1 className="p-2">V<span className="h1b">EDANTA</span> E<span className="h1b">N</span> E<span className="h1b">SPAÑOL</span></h1>
+      <div className="d-flex justify-content-center align-items-center header-content">
+        <p className="title-first-letter">V<span className="title-rest-word">EDANTA</span> E<span className="title-rest-word">N</span> E<span className="title-rest-word">SPAÑOL</span></p>
 
         {/*  <img className='logo' src={logo} alt=""/>
         <p className='px-3 py-0 m-0'>"una frase que represente"</p> */}

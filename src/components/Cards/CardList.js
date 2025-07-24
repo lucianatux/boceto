@@ -13,7 +13,8 @@ import {
 export const CardList = () => {
   const [cards, setCards] = useState([]);
   const [currentId, setCurrentId] = useState("");
-  const { currentUser } = useContext(AuthContext); // 👈 importás el contexto
+  const { currentUser } = useContext(AuthContext);
+  const [expandedCardId, setExpandedCardId] = useState(null); // 👈 nuevo estado
 
   useEffect(() => {
     const cardsCollectionRef = collection(db, "cards");
@@ -65,9 +66,11 @@ export const CardList = () => {
     ? cards.find((card) => card.id === currentId)
     : null;
 
+  const maxChars = 100; // 👈 cantidad máxima de caracteres
+
   return (
-    <div className="card-list m-5 p-5">
-      {currentUser && ( // ✅ solo se muestra si está logueado
+    <div className="card-list m-1 p-1">
+      {currentUser && (
         <CardForm
           addOrEditCard={addOrEditCard}
           currentId={currentId}
@@ -75,48 +78,67 @@ export const CardList = () => {
         />
       )}
 
-      <div className="col-md-8">
-        {cards.map((card) => (
-          <div className="card mb-1" key={card.id}>
-            <div className="card-body">
-              <div className="d-flex justify-content-between">
-                <h4>{card.name}</h4>
-                {currentUser && ( // ✅ solo los ve en modo edición
-                  <div>
-                    <i
-                      className="material-icons me-2 text-primary"
-                      style={{ cursor: "pointer" }}
-                      onClick={() => setCurrentId(card.id)}
-                      title="Editar"
-                    >
-                      edit
-                    </i>
-                    <i
-                      className="material-icons text-danger"
-                      style={{ cursor: "pointer" }}
-                      onClick={() => onDeleteCard(card.id)}
-                      title="Eliminar"
-                    >
-                      delete
-                    </i>
-                  </div>
-                )}
-              </div>
-              {/* Imagen */}
-              {card.image && (
-                <img
-                  src={card.image}
-                  alt={card.name}
-                  className="img-fluid mb-2"
-                />
+      <div className="col-md-12">
+        {cards.map((card) => {
+          const isExpanded = expandedCardId === card.id;
+          const shouldTruncate =
+            card.description && card.description.length > maxChars;
+
+          const displayedDescription =
+            isExpanded || !shouldTruncate
+              ? card.description
+              : card.description.slice(0, maxChars) + "...";
+
+          return (
+            <div className="custom-card" key={card.id}>
+              {currentUser && (
+                <div className="card-actions">
+                  <i
+                    className="material-icons"
+                    onClick={() => setCurrentId(card.id)}
+                    title="Editar"
+                  >
+                    edit
+                  </i>
+                  <i
+                    className="material-icons"
+                    onClick={() => onDeleteCard(card.id)}
+                    title="Eliminar"
+                  >
+                    delete
+                  </i>
+                </div>
               )}
-              <p>{card.description}</p>
-              <a href={card.url} target="_blank" rel="noreferrer">
+              {card.image && (
+                <img src={card.image} alt={card.name} className="card-image" />
+              )}
+              <h4 className="card-title">{card.name}</h4>
+              <p className="card-description">{displayedDescription}</p>
+
+              {shouldTruncate && (
+                <div className="read-more-container">
+                  <button
+                    onClick={() =>
+                      setExpandedCardId(isExpanded ? null : card.id)
+                    }
+                    className="read-more-btn"
+                  >
+                    {isExpanded ? "Ver menos" : "Ver más"}
+                  </button>
+                </div>
+              )}
+
+              <a
+                href={card.url}
+                target="_blank"
+                rel="noreferrer"
+                className="card-link"
+              >
                 Go to website
               </a>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
