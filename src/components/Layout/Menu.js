@@ -13,6 +13,9 @@ export const Menu = () => {
 
           {/* Menú principal centrado */}
           <Nav className="d-flex w-100 justify-content-center">
+             <Nav.Link as={Link} to="/">
+              Inicio
+            </Nav.Link>
             <Nav.Link as={Link} to="/videos">
               Videos
             </Nav.Link>

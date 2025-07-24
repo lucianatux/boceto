@@ -120,6 +120,12 @@ a {
 }
 
 /*************************** Card *********************/
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;          /* permite que bajen a nueva fila */
+  justify-content: center;  /* o space-around / space-between según quieras */
+  gap: 20px;               
+}
 
 
 .custom-card {
@@ -128,21 +134,23 @@ a {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   padding: 16px;
   margin: 10px;
-  max-width: 300px; /* o el ancho que te guste */
+  max-width: 300px; 
+  flex-shrink: 0;          /* evita que se achiquen demasiado */
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .custom-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  /*transform: translateY(-4px);*/
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
 }
 
 .card-image {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 8px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 3px;
+  margin-bottom: 3px;
 }
 
 .card-title {
@@ -233,14 +241,14 @@ a {
     width: 42px;
     height: 42px;
     margin: 5px 10px;
-    background: #666;
+    background: #888;
     display: inline-flex;
     border-radius: 50%;
     margin-right: 6px;
     align-items: center;
     justify-content: center;
     line-height: 1;
-    border: 1px solid #666;
+    border: 1px solid #888;
   }
   .social-icon a::before {
     content: "";

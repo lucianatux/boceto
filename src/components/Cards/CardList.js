@@ -14,7 +14,7 @@ export const CardList = () => {
   const [cards, setCards] = useState([]);
   const [currentId, setCurrentId] = useState("");
   const { currentUser } = useContext(AuthContext);
-  const [expandedCardId, setExpandedCardId] = useState(null); // 👈 nuevo estado
+  const [expandedCardId, setExpandedCardId] = useState(null); 
 
   useEffect(() => {
     const cardsCollectionRef = collection(db, "cards");
@@ -66,7 +66,7 @@ export const CardList = () => {
     ? cards.find((card) => card.id === currentId)
     : null;
 
-  const maxChars = 100; // 👈 cantidad máxima de caracteres
+  const maxChars = 200; // 👈 cantidad máxima de caracteres
 
   return (
     <div className="card-list m-1 p-1">
@@ -78,7 +78,7 @@ export const CardList = () => {
         />
       )}
 
-      <div className="col-md-12">
+      <div className="cards-container">
         {cards.map((card) => {
           const isExpanded = expandedCardId === card.id;
           const shouldTruncate =
@@ -134,7 +134,7 @@ export const CardList = () => {
                 rel="noreferrer"
                 className="card-link"
               >
-                Go to website
+                Ir al sitio
               </a>
             </div>
           );
