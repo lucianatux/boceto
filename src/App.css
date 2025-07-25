@@ -41,9 +41,6 @@ a {
   font-family: "Lora", sans-serif;
   font-size: 36px;
 }
-.logo {
-  width: 60px !important;
-}
 
 @media (max-width: 768px) {
   .title-first-letter {
@@ -164,7 +161,7 @@ a {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
   margin: 10px;
-  width: 300px;
+  width: 350px;
   flex-shrink: 0; /* evita que se achiquen demasiado */
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -176,9 +173,9 @@ a {
 }
 
 .card-image {
-  width: 250px;
+  width: 300px;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 3px;
   margin-bottom: 3px;
 }
@@ -257,8 +254,22 @@ a {
     justify-content: center;
     align-items: center;
   }
+  .title-first-letter {
+  font-family: "Lora", sans-serif;
+  font-size: 30px;
 }
-
+.title-rest-word {
+  font-family: "Lora", sans-serif;
+  font-size: 22px;
+}
+}
+.footer-content {
+  background-image: url("./assets/fotos/pa2.jpg");
+  background-repeat: no-repeat;
+  background-position: top;
+  width: 100%;
+  height: 150px;
+}
 .social-icon {
   display: inline-block;
   flex: 1;

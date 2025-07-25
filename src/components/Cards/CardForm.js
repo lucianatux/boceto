@@ -102,11 +102,8 @@ export const CardForm = ({ addOrEditCard, currentId, currentCard }) => {
           <option value="">Seleccioná una categoría</option>
           <option value="inicio">Inicio</option>
           <option value="videos">Videos</option>
-          <option value="shorts">Shorts</option>
           <option value="libros">Libros</option>
-          <option value="comunidad">Comunidad</option>
-          <option value="inspiracion">Inspiración</option>
-          <option value="fotos">Fotos</option>
+          <option value="comunidad">Preguntas</option>
         </select>
 
         {error && <small className="text-warning">{error}</small>}

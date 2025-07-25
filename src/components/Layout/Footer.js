@@ -1,18 +1,19 @@
-import tiktokIcon from "../../assets/iconos/tiktok5.png";
+import tiktokIcon from "../../assets/iconos/nav-icon1.svg";
 import instagramIcon from "../../assets/iconos/nav-icon3.svg";
 import youtubeIcon from "../../assets/iconos/nav-icon5.svg";
-import logo from "../../assets/logo.png";
 import { Container } from "react-bootstrap";
 
 export const Footer = () => {
   return (
-    <div className="footer d-flex justify-content-between align-items-center">
+    <div className="footer d-flex justify-content-center align-items-center footer-content">
       <Container fluid>
         <div className="d-flex justify-content-evenly align-items-center flex-wrap">
           <div className="grouped-items">
-            <h3>Título</h3>
-            <img className="logo" src={logo} alt="" />
-            <p>Lorem ipsum dolor sit amet</p>
+            <p className="title-first-letter text-center mb-2 mb-md-0">
+              V<span className="title-rest-word">EDANTA</span> E
+              <span className="title-rest-word">N</span> E
+              <span className="title-rest-word">SPAÑOL</span>
+            </p>
           </div>
           <div className="social-icon d-flex justify-content-center align-items-center flex-wrap">
             <a
@@ -29,7 +30,7 @@ export const Footer = () => {
             >
               <img src={instagramIcon} alt="instagram-icon" />
             </a>
-             <a
+            <a
               href="https://www.tiktok.com/@caminosvedanta?lang=es-419"
               target="_blank"
               rel="noreferrer"
