@@ -1,10 +1,15 @@
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../Auth/AuthContext"; // Ajusta la ruta si hace falta
+
 import linkedinIcon from "../../assets/iconos/nav-icon1.svg";
 import instagramIcon from "../../assets/iconos/nav-icon3.svg";
 import youtubeIcon from "../../assets/iconos/nav-icon5.svg";
 
 export const Menu = () => {
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <div className="menu">
       <Navbar bg="light" expand="lg" className="px-2">
@@ -13,7 +18,7 @@ export const Menu = () => {
 
           {/* Menú principal centrado */}
           <Nav className="d-flex w-100 justify-content-center">
-             <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to={currentUser ? "/inicio-edit" : "/"}>
               Inicio
             </Nav.Link>
             <Nav.Link as={Link} to="/videos">

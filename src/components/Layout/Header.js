@@ -15,18 +15,24 @@ export const Header = () => {
   return (
     <header className="header">
       <div className="d-flex justify-content-center align-items-center header-content">
-        <p className="title-first-letter">V<span className="title-rest-word">EDANTA</span> E<span className="title-rest-word">N</span> E<span className="title-rest-word">SPAÑOL</span></p>
+        <p className="title-first-letter">
+          V<span className="title-rest-word">EDANTA</span> E
+          <span className="title-rest-word">N</span> E
+          <span className="title-rest-word">SPAÑOL</span>
+        </p>
 
         {/*  <img className='logo' src={logo} alt=""/>
         <p className='px-3 py-0 m-0'>"una frase que represente"</p> */}
         {/* Mostrar "modo edición" solo si el usuario está logueado */}
         {currentUser && (
-          <button
-            onClick={handleLogout}
-            className="btn btn-outline-danger ms-3"
-          >
-            Salir de modo edición
-          </button>
+          <div>
+            <button
+              onClick={handleLogout}
+              className="btn btn-secondary ms-3"
+            >
+              Salir de modo edición
+            </button>
+          </div>
         )}
       </div>
     </header>

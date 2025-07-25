@@ -5,17 +5,16 @@ import { Header } from "./components/Layout/Header";
 import { Menu } from "./components/Layout/Menu";
 import { Home } from "./components/Layout/Home";
 import { Login } from "./components/Auth/Login";
-import { CardList } from "./components/Cards/CardList";
-import { ArticleForm } from "./components/Articles/ArticleForm";
 import { Footer } from "./components/Layout/Footer";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "./components/Auth/AuthContext";
-import { VideoList } from "./components/Content/Videos/VideoList";
+import { CategoryPage } from "./components/Cards/CategoryPage";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
   const location = useLocation();
 
+  // Ruta protegida, si no hay user, redirige a login
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/login" />;
   };
@@ -28,21 +27,33 @@ function App() {
       {!isLoginRoute && <Header />}
 
       <Routes>
+        {/* Página pública */}
         <Route path="/" element={<Home />} />
+
+        {/* Login */}
         <Route path="/login" element={<Login />} />
+
+        {/* Rutas categoría públicas */}
+        <Route path="/videos" element={<CategoryPage category="videos" />} />
+        <Route path="/shorts" element={<CategoryPage category="shorts" />} />
+        <Route path="/libros" element={<CategoryPage category="libros" />} />
+        <Route path="/comunidad" element={<CategoryPage category="comunidad" />} />
+        <Route path="/inspiracion" element={<CategoryPage category="inspiracion" />} />
+        <Route path="/fotos" element={<CategoryPage category="fotos" />} />
+
+        {/* Nueva ruta protegida para edición en inicio-edit */}
         <Route
-          path="/articleform"
+          path="/inicio-edit"
           element={
             <RequireAuth>
-              <ArticleForm />
+              <CategoryPage category="inicio" />
             </RequireAuth>
           }
         />
-        <Route path="/videos" element={<VideoList />} />
       </Routes>
-      {!isLoginRoute && <CardList />}
 
-      <Footer />
+      {!isLoginRoute && <Footer />}
+
     </div>
   );
 }

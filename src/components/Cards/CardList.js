@@ -10,11 +10,11 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-export const CardList = () => {
+export const CardList = ({ category }) => {
   const [cards, setCards] = useState([]);
   const [currentId, setCurrentId] = useState("");
   const { currentUser } = useContext(AuthContext);
-  const [expandedCardId, setExpandedCardId] = useState(null); 
+  const [expandedCardId, setExpandedCardId] = useState(null);
 
   useEffect(() => {
     const cardsCollectionRef = collection(db, "cards");
@@ -66,7 +66,10 @@ export const CardList = () => {
     ? cards.find((card) => card.id === currentId)
     : null;
 
-  const maxChars = 200; // 👈 cantidad máxima de caracteres
+  const maxChars = 200;
+
+  // ✅ Filtrar las cards según la categoría recibida
+  const filteredCards = cards.filter((card) => card.category === category);
 
   return (
     <div className="card-list m-1 p-1">
@@ -74,12 +77,12 @@ export const CardList = () => {
         <CardForm
           addOrEditCard={addOrEditCard}
           currentId={currentId}
-          currentCard={currentCard || { url: "", name: "", description: "" }}
+          currentCard={currentCard || { url: "", name: "", description: "", image: "", category }}
         />
       )}
 
       <div className="cards-container">
-        {cards.map((card) => {
+        {filteredCards.map((card) => {
           const isExpanded = expandedCardId === card.id;
           const shouldTruncate =
             card.description && card.description.length > maxChars;

@@ -14,9 +14,18 @@ html {
   font-family: 'Lora', sans-serif;
 }
 
-body{
-    background-color: #444;
+/* Hace que la App ocupe toda la altura de la pantalla y el footer quede abajo */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+
+/* El main ocupa todo el espacio disponible entre header/menu y footer */
+.App > main {
+  flex: 1;
+}
+
 
 ul {
   list-style: none;
@@ -108,8 +117,8 @@ a {
   align-items: center;
 
   .carousel {
-    width: 60vw;
-    height: 60vh;
+    max-width: 40vw;
+    height: 40vh;
   }
   @media (max-width: 768px) {
     .carousel {
@@ -134,7 +143,7 @@ a {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   padding: 16px;
   margin: 10px;
-  max-width: 300px; 
+  width: 300px; 
   flex-shrink: 0;          /* evita que se achiquen demasiado */
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -146,7 +155,7 @@ a {
 }
 
 .card-image {
-  width: 100%;
+  width: 250px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 3px;
@@ -217,7 +226,7 @@ a {
 /*************************** Footer *********************/
 .footer {
   background-color: #ececec;
-  height: 20vh;
+  height: 150px;
   padding: 10px 20px;
 
   .grouped-items {
