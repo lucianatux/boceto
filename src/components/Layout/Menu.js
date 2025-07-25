@@ -1,14 +1,15 @@
 import { Navbar, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom"; // ✅ importamos useLocation
 import { useContext } from "react";
-import { AuthContext } from "../Auth/AuthContext"; // Ajusta la ruta si hace falta
+import { AuthContext } from "../Auth/AuthContext";
 
-import linkedinIcon from "../../assets/iconos/nav-icon1.svg";
+import tiktokIcon from "../../assets/iconos/tiktok5.png";
 import instagramIcon from "../../assets/iconos/nav-icon3.svg";
 import youtubeIcon from "../../assets/iconos/nav-icon5.svg";
 
 export const Menu = () => {
   const { currentUser } = useContext(AuthContext);
+  const location = useLocation(); // ✅ obtenemos la ruta actual
 
   return (
     <div className="menu">
@@ -18,26 +19,33 @@ export const Menu = () => {
 
           {/* Menú principal centrado */}
           <Nav className="d-flex w-100 justify-content-center">
-            <Nav.Link as={Link} to={currentUser ? "/inicio-edit" : "/"}>
+            <Nav.Link
+              as={Link}
+              to={currentUser ? "/inicio-edit" : "/"}
+              active={location.pathname === "/" || location.pathname === "/inicio-edit"}
+            >
               Inicio
             </Nav.Link>
-            <Nav.Link as={Link} to="/videos">
+            <Nav.Link
+              as={Link}
+              to="/videos"
+              active={location.pathname === "/videos"}
+            >
               Videos
             </Nav.Link>
-            <Nav.Link as={Link} to="/shorts">
-              Shorts
-            </Nav.Link>
-            <Nav.Link as={Link} to="/libros">
+            <Nav.Link
+              as={Link}
+              to="/libros"
+              active={location.pathname === "/libros"}
+            >
               Libros
             </Nav.Link>
-            <Nav.Link as={Link} to="/comunidad">
-              Comunidad
-            </Nav.Link>
-            <Nav.Link as={Link} to="/inspiracion">
-              Inspiración
-            </Nav.Link>
-            <Nav.Link as={Link} to="/fotos">
-              Fotos
+            <Nav.Link
+              as={Link}
+              to="/comunidad"
+              active={location.pathname === "/comunidad"}
+            >
+              Preguntas
             </Nav.Link>
           </Nav>
 
@@ -58,14 +66,13 @@ export const Menu = () => {
               <img src={instagramIcon} alt="instagram-icon" />
             </a>
             <a
-              href="https://www.linkedin.com/in/guillermo-caminos-24230b43/"
+              href="https://www.tiktok.com/@caminosvedanta?lang=es-419"
               target="_blank"
               rel="noreferrer"
             >
-              <img src={linkedinIcon} alt="linkedin-icon" />
+              <img src={tiktokIcon} alt="tiktok-icon" />
             </a>
           </div>
-
         </Navbar.Collapse>
       </Navbar>
     </div>

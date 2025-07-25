@@ -39,7 +39,8 @@ export const CardForm = ({ addOrEditCard, currentId, currentCard }) => {
   };
 
   return (
-    <div className="card-form m-5 p-5">
+    <div className="container">
+    <div className="card-form m-1 p-1">
       <h3>Ingrese el nuevo contenido:</h3>
       <form
         onSubmit={handleSubmit}
@@ -114,6 +115,7 @@ export const CardForm = ({ addOrEditCard, currentId, currentCard }) => {
           {currentId ? "Actualizar" : "Enviar"}
         </button>
       </form>
+    </div>
     </div>
   );
 };

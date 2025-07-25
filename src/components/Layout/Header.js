@@ -7,34 +7,31 @@ export const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch({ type: "LOGOUT" }); // Actualiza el estado global
-    localStorage.removeItem("user"); // Limpia el almacenamiento local
-    navigate("/"); // Redirige a la página principal
+    dispatch({ type: "LOGOUT" });
+    localStorage.removeItem("user");
+    navigate("/");
   };
 
   return (
     <header className="header">
-      <div className="d-flex justify-content-center align-items-center header-content">
-        <p className="title-first-letter">
-          V<span className="title-rest-word">EDANTA</span> E
-          <span className="title-rest-word">N</span> E
-          <span className="title-rest-word">SPAÑOL</span>
-        </p>
+        <div className="d-flex flex-column flex-md-row justify-content-center align-items-center header-content">
+          <p className="title-first-letter text-center mb-2 mb-md-0">
+            V<span className="title-rest-word">EDANTA</span> E
+            <span className="title-rest-word">N</span> E
+            <span className="title-rest-word">SPAÑOL</span>
+          </p>
 
-        {/*  <img className='logo' src={logo} alt=""/>
-        <p className='px-3 py-0 m-0'>"una frase que represente"</p> */}
-        {/* Mostrar "modo edición" solo si el usuario está logueado */}
-        {currentUser && (
-          <div>
+          {/* Solo mostrar si está logueado */}
+          {currentUser && (
             <button
               onClick={handleLogout}
-              className="btn btn-secondary ms-3"
+              className="btn btn-secondary btn-sm ms-md-3"
             >
               Salir de modo edición
             </button>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+
     </header>
   );
 };

@@ -1,4 +1,4 @@
-import linkedinIcon from "../../assets/iconos/nav-icon1.svg";
+import tiktokIcon from "../../assets/iconos/tiktok5.png";
 import instagramIcon from "../../assets/iconos/nav-icon3.svg";
 import youtubeIcon from "../../assets/iconos/nav-icon5.svg";
 import logo from "../../assets/logo.png";
@@ -30,11 +30,11 @@ export const Footer = () => {
               <img src={instagramIcon} alt="instagram-icon" />
             </a>
              <a
-              href="https://www.linkedin.com/in/guillermo-caminos-24230b43/"
+              href="https://www.tiktok.com/@caminosvedanta?lang=es-419"
               target="_blank"
               rel="noreferrer"
             >
-              <img src={linkedinIcon} alt="linkedin-icon" />
+              <img src={tiktokIcon} alt="tiktok-icon" />
             </a>
           </div>
         </div>

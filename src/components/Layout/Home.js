@@ -3,6 +3,8 @@ import forest from "../../assets/forest.jpg";
 import lake from "../../assets/lake.jpg";
 import mountain from "../../assets/mountain.jpg";
 import { CategoryPage } from "../Cards/CategoryPage";
+import { Link } from "react-router-dom";
+
 
 export const Home = () => {
   return (
@@ -10,27 +12,33 @@ export const Home = () => {
       <div className="carousel-wrapper">
         <Carousel fade className="carousel m-1">
           <Carousel.Item>
+             <Link to="/videos">
             <img className="d-block w-100" src={lake} alt="First slide" />
             <Carousel.Caption>
-              <h3>First slide label</h3>
+              <h3>Videos</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </Carousel.Caption>
+            </Link>
           </Carousel.Item>
           <Carousel.Item>
+             <Link to="/libros">
             <img className="d-block w-100" src={forest} alt="First slide" />
             <Carousel.Caption>
-              <h3>Second slide label</h3>
+              <h3>Libros</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </Carousel.Caption>
+            </Link>
           </Carousel.Item>
           <Carousel.Item>
+            <Link to="/comunidad">
             <img className="d-block w-100" src={mountain} alt="First slide" />
             <Carousel.Caption>
-              <h3>Third slide label</h3>
+              <h3>Preguntas y respuestas</h3>
               <p>
                 Praesent commodo cursus magna, vel scelerisque nisl consectetur.
               </p>
             </Carousel.Caption>
+            </Link>
           </Carousel.Item>
         </Carousel>
       </div>
