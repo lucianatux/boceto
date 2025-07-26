@@ -4,7 +4,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 html {
   font-size: 18px;
-  color: #333;
 }
 
 * {
@@ -36,10 +35,12 @@ a {
 .title-first-letter {
   font-family: "Lora", sans-serif;
   font-size: 50px;
+  color: #800080;
 }
 .title-rest-word {
   font-family: "Lora", sans-serif;
   font-size: 36px;
+  color: #800080;
 }
 
 @media (max-width: 768px) {
@@ -118,9 +119,9 @@ a {
 
   /* Resalta el enlace activo */
   .nav-link.active {
-    color: #007bff !important; /* azul Bootstrap */
+    color: #800080 !important;
     font-weight: 600; /* un poco más negrita */
-    border-bottom: 2px solid #007bff; /* subrayado elegante */
+    border-bottom: 2px solid #561256; /* subrayado elegante */
   }
 }
 
@@ -188,7 +189,7 @@ a {
 
 .card-description {
   font-size: 0.95rem;
-  color: #555;
+  color: #444;
   margin-bottom: 8px;
 }
 
@@ -242,9 +243,8 @@ a {
 
 /*************************** sections *********************/
 
-
 .subsection {
-  background-color: #f9f9f9;
+  background-color: #f8f8f8;
   border: 1px solid #ddd;
   border-radius: 8px;
   margin-bottom: 1rem;
@@ -254,9 +254,45 @@ a {
 .subsection-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #333;
+  color: #800080;
 }
 
+.custom-card.videos {
+  width: 380px;
+}
+.custom-card.libros {
+  width: 250px;
+}
+.custom-card.videos .card-image {
+  width: 320px;
+}
+
+.custom-card.libros .card-image {
+  width: 200px;
+  aspect-ratio: 1/1;
+}
+
+.custom-card.inicio.novedades {
+  background-color: #f5d0b2;
+}
+.custom-card.inicio.destacados {
+  background-color: #f5d0b2;
+}
+.custom-card.videos.propios {
+  background-color: #eee;
+}
+.custom-card.videos.recomendados {
+  background-color: #eee;
+}
+.custom-card.libros.propios {
+  background-color: #f5d0b2;
+}
+.custom-card.libros.recomendados {
+  background-color: #eee;
+}
+.custom-card.comunidad {
+    width: 320px;
+}
 
 /*************************** Footer *********************/
 .footer {
@@ -273,13 +309,11 @@ a {
     align-items: center;
   }
   .title-first-letter {
-  font-family: "Lora", sans-serif;
-  font-size: 30px;
-}
-.title-rest-word {
-  font-family: "Lora", sans-serif;
-  font-size: 22px;
-}
+    font-size: 30px;
+  }
+  .title-rest-word {
+    font-size: 22px;
+  }
 }
 .footer-content {
   background-image: url("./assets/fotos/pa2.jpg");

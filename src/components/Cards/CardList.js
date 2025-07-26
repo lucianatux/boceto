@@ -8,7 +8,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-export const CardList = ({ category, subcategory }) => {
+export const CardList = ({ category, subcategory, setCurrentId }) => {
   const [cards, setCards] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const [expandedCardId, setExpandedCardId] = useState(null);
@@ -33,6 +33,7 @@ export const CardList = ({ category, subcategory }) => {
 
   const maxChars = 200;
 
+  // Filtramos las cards por categoría y subcategoría
   const filteredCards = cards.filter(
     (card) =>
       card.category === category &&
@@ -60,12 +61,12 @@ export const CardList = ({ category, subcategory }) => {
           : card.description.slice(0, maxChars) + "...";
 
         return (
-          <div className="custom-card" key={card.id}>
+          <div className={`custom-card ${card.category} ${card.subcategory}`} key={card.id}>
             {currentUser && (
               <div className="card-actions">
                 <i
                   className="material-icons"
-                  onClick={() => console.log("Editar", card.id)}
+                  onClick={() => setCurrentId(card.id)}
                   title="Editar"
                 >
                   edit
@@ -110,3 +111,4 @@ export const CardList = ({ category, subcategory }) => {
     </div>
   );
 };
+
