@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { db } from "../../Firebase";
 import { AuthContext } from "../Auth/AuthContext";
+import { SearchContext } from "../SearchContext"; 
 import {
   collection,
   doc,
@@ -8,12 +9,16 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-export const CardList = ({ category, subcategory, setCurrentId }) => {
+export const CardList = ({ category, subcategory, setCurrentId, cardsToShow }) => {
   const [cards, setCards] = useState([]);
   const { currentUser } = useContext(AuthContext);
+  const { searchTerm } = useContext(SearchContext); 
   const [expandedCardId, setExpandedCardId] = useState(null);
 
   useEffect(() => {
+    // Solo hacemos fetch si NO nos pasaron cardsToShow desde afuera
+    if (cardsToShow) return;
+
     const cardsCollectionRef = collection(db, "cards");
     const unsubscribe = onSnapshot(
       cardsCollectionRef,
@@ -29,16 +34,23 @@ export const CardList = ({ category, subcategory, setCurrentId }) => {
       }
     );
     return () => unsubscribe();
-  }, []);
+  }, [cardsToShow]);
 
   const maxChars = 200;
 
-  // Filtramos las cards por categoría y subcategoría
-  const filteredCards = cards.filter(
-    (card) =>
-      card.category === category &&
-      card.subcategory === subcategory
-  );
+  // Si nos pasan cardsToShow usamos esa lista directamente, sino filtramos
+  const displayedCards = cardsToShow ?? cards.filter((card) => {
+    // Si hay texto en búsqueda, ignoramos categoría y subcategoría (ya filtrado afuera si corresponde)
+    if (searchTerm.trim() !== "") {
+      return (
+        card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (card.description && card.description.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+    }
+
+    // Si no hay búsqueda, filtramos por categoría y subcategoría
+    return card.category === category && card.subcategory === subcategory;
+  });
 
   const onDeleteCard = async (id) => {
     if (window.confirm("¿Estás seguro de que querés borrar esta card?")) {
@@ -53,7 +65,7 @@ export const CardList = ({ category, subcategory, setCurrentId }) => {
 
   return (
     <div className="cards-container">
-      {filteredCards.map((card) => {
+      {displayedCards.map((card) => {
         const isExpanded = expandedCardId === card.id;
         const shouldTruncate = card.description && card.description.length > maxChars;
         const displayedDescription = isExpanded || !shouldTruncate
@@ -83,8 +95,8 @@ export const CardList = ({ category, subcategory, setCurrentId }) => {
             {card.image && (
               <img src={card.image} alt={card.name} className="card-image" />
             )}
-            <h4 className="card-title">{card.name}</h4>
-            <p className="card-description">{displayedDescription}</p>
+            <h4 className="card-title p-1">{card.name}</h4>
+            <p className="card-description p-1">{displayedDescription}</p>
 
             {shouldTruncate && (
               <div className="read-more-container">
@@ -111,4 +123,3 @@ export const CardList = ({ category, subcategory, setCurrentId }) => {
     </div>
   );
 };
-

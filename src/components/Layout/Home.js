@@ -1,44 +1,58 @@
 import Carousel from "react-bootstrap/Carousel";
-import forest from "../../assets/forest.jpg";
-import lake from "../../assets/lake.jpg";
-import mountain from "../../assets/mountain.jpg";
+import secondslide from "../../assets/fotos/slide1.jpg";
+import firstslide from "../../assets/fotos/slide1.jpg";
+import thirdslide from "../../assets/fotos/slide3.jpg";
 import { CategoryPage } from "../Cards/CategoryPage";
 import { Link } from "react-router-dom";
-
 
 export const Home = () => {
   return (
     <div className="home">
       <div className="carousel-wrapper">
-        <Carousel fade className="carousel m-1">
+        <Carousel className="carousel" interval={3000} pause="hover">
           <Carousel.Item>
-             <Link to="/videos">
-            <img className="d-block w-100" src={lake} alt="First slide" />
+            <Link to="/videos">
+              <img
+                className="d-block w-100"
+                src={firstslide}
+                alt="Videos slide"
+                loading="eager"
+              />
+            </Link>
             <Carousel.Caption>
               <h3>Videos</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </Carousel.Caption>
-            </Link>
           </Carousel.Item>
+
           <Carousel.Item>
-             <Link to="/libros">
-            <img className="d-block w-100" src={forest} alt="First slide" />
+            <Link to="/libros">
+              <img
+                className="d-block w-100"
+                src={secondslide}
+                alt="Libros slide"
+                loading="eager"
+              />
+            </Link>
             <Carousel.Caption>
               <h3>Libros</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </Carousel.Caption>
-            </Link>
           </Carousel.Item>
+
           <Carousel.Item>
             <Link to="/comunidad">
-            <img className="d-block w-100" src={mountain} alt="First slide" />
+              <img
+                className="d-block w-100"
+                src={thirdslide}
+                alt="Preguntas y respuestas slide"
+                loading="eager"
+              />
+            </Link>
             <Carousel.Caption>
               <h3>Preguntas y respuestas</h3>
-              <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-              </p>
+              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
             </Carousel.Caption>
-            </Link>
           </Carousel.Item>
         </Carousel>
       </div>

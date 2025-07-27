@@ -1,31 +1,16 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../Auth/AuthContext";
+import { db } from "../../Firebase";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { CardForm } from "./CardForm";
 import { CardList } from "./CardList";
-import { db } from "../../Firebase";
-import { collection, doc, setDoc, onSnapshot } from "firebase/firestore";
+import { SearchContext } from "../SearchContext";
 
 export const CategoryPage = ({ category }) => {
   const { currentUser } = useContext(AuthContext);
+  const { searchTerm } = useContext(SearchContext);
 
-  // 👇 Lógica recuperada
-  const [cards, setCards] = useState([]);
   const [currentId, setCurrentId] = useState("");
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(db, "cards"),
-      (querySnapshot) => {
-        const docs = [];
-        querySnapshot.forEach((doc) =>
-          docs.push({ ...doc.data(), id: doc.id })
-        );
-        setCards(docs);
-      },
-      (error) => console.error("Error fetching cards:", error)
-    );
-    return () => unsubscribe();
-  }, []);
 
   const addOrEditCard = async (cardObject) => {
     try {
@@ -43,10 +28,6 @@ export const CategoryPage = ({ category }) => {
       console.error("Error saving card:", error);
     }
   };
-
-  const currentCard = currentId
-    ? cards.find((card) => card.id === currentId)
-    : null;
 
   const subcategories = category === "videos"
     ? ["propios", "recomendados"]
@@ -66,20 +47,38 @@ export const CategoryPage = ({ category }) => {
         <CardForm
           addOrEditCard={addOrEditCard}
           currentId={currentId}
-          currentCard={currentCard || { url: "", name: "", description: "", image: "", category, subcategory: "" }}
+          currentCard={{
+            url: "",
+            name: "",
+            description: "",
+            image: "",
+            category,
+            subcategory: "",
+          }}
         />
       )}
 
-      {subcategories.map((sub) => (
-        <div key={sub} className="subsection">
-          <h4>{sub.toUpperCase()}</h4>
-          <CardList
-            category={category}
-            subcategory={sub}
-            setCurrentId={setCurrentId} // 👈 pasamos esto para que al editar sepa qué card
-          />
-        </div>
-      ))}
+      {searchTerm.trim() !== "" ? (
+        // Si hay búsqueda, mostramos un único CardList sin filtrar por categoría/subcategoría
+        <CardList
+          setCurrentId={setCurrentId}
+          isSearchResults={true}
+          searchTerm={searchTerm} // Pasamos el término para que filtre dentro del CardList
+        />
+      ) : (
+        // Si no hay búsqueda, mostramos las subsecciones normalmente
+        subcategories.map((sub) => (
+          <div key={sub} className="subsection">
+            <h4>{sub.toUpperCase()}</h4>
+            <CardList
+              category={category}
+              subcategory={sub}
+              setCurrentId={setCurrentId}
+              searchTerm="" // Sin término de búsqueda, filtra normal
+            />
+          </div>
+        ))
+      )}
     </div>
   );
 };

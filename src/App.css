@@ -116,6 +116,12 @@ a {
   .nav-link:hover {
     background-color: #ececec;
   }
+  
+  .search-input {
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
 
   /* Resalta el enlace activo */
   .nav-link.active {
@@ -132,14 +138,25 @@ a {
   flex-direction: column;
   align-items: center;
 }
+
 .carousel-wrapper {
+  width: 100%;
   max-width: 1200px;
   margin: 1rem auto;
 }
 
+.carousel {
+  width: 100%;
+}
+
 .carousel img {
   height: 400px;
-  object-fit: cover;
+  object-fit: contain;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(100%); /* de blanco a negro, o ajustá a tu color */
 }
 
 @media (max-width: 768px) {
@@ -147,6 +164,7 @@ a {
     height: 250px;
   }
 }
+
 
 /*************************** Card *********************/
 .cards-container {
@@ -160,9 +178,8 @@ a {
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 16px;
   margin: 10px;
-  width: 350px;
+  width: 300px;
   flex-shrink: 0; /* evita que se achiquen demasiado */
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -174,23 +191,24 @@ a {
 }
 
 .card-image {
-  width: 300px;
+  width: 100%;
   aspect-ratio: 1 / 1;
-  object-fit: contain;
-  border-radius: 3px;
+  object-fit: cover;
+  border-radius: 6px;
   margin-bottom: 3px;
 }
 
 .card-title {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   margin: 8px 0;
 }
 
 .card-description {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: #444;
   margin-bottom: 8px;
+  padding: 10px;
 }
 
 .card-link {
@@ -257,19 +275,15 @@ a {
   color: #800080;
 }
 
-.custom-card.videos {
-  width: 380px;
-}
 .custom-card.libros {
   width: 250px;
-}
-.custom-card.videos .card-image {
-  width: 320px;
 }
 
 .custom-card.libros .card-image {
   width: 200px;
-  aspect-ratio: 1/1;
+  padding-top: 10px;
+  object-fit: contain;
+
 }
 
 .custom-card.inicio.novedades {
