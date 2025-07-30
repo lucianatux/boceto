@@ -10,7 +10,7 @@ import { SearchProvider } from "./components/SearchContext.js";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Router>
+    <Router basename="/boceto">
       <AuthContextProvider>
         <SearchProvider>
           <App />
