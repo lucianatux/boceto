@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const CardForm = ({ addOrEditCard, currentId, currentCard }) => {
+export const CardForm = ({ addOrEditCard, currentCard }) => {
   const [values, setValues] = useState({ 
     url: "", 
     name: "", 
@@ -11,7 +11,7 @@ export const CardForm = ({ addOrEditCard, currentId, currentCard }) => {
   });
   const [error, setError] = useState("");
 
-  // 🧠 Definimos subcategorías posibles según categoría
+  // 🧠 Subcategorías posibles según categoría
   const subcategoriesByCategory = {
     inicio: ["destacados", "novedades"],
     videos: ["propios", "recomendados"],
@@ -19,23 +19,28 @@ export const CardForm = ({ addOrEditCard, currentId, currentCard }) => {
     comunidad: ["vedanta", "advaita vedanta", "upanishads", "vedas", "otros"]
   };
 
-  // 🧩 Opciones de subcategoría actuales
   const currentSubcategories = subcategoriesByCategory[values.category] || [];
 
   useEffect(() => {
-    if (currentId === "") {
-      setValues({ url: "", name: "", description: "", image: "", category: "", subcategory: "" });
-      setError("");
-    } else {
+    if (currentCard) {
+      // Si estamos editando, rellenamos campos
       setValues({ ...currentCard });
-      setError("");
+    } else {
+      // Si no, limpiamos
+      setValues({ 
+        url: "", 
+        name: "", 
+        description: "", 
+        image: "", 
+        category: "", 
+        subcategory: "" 
+      });
     }
-  }, [currentId, currentCard]);
+    setError("");
+  }, [currentCard]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
-    // Si cambia la categoría, resetear la subcategoría
     if (name === "category") {
       setValues({ ...values, category: value, subcategory: "" });
     } else {
@@ -52,14 +57,21 @@ export const CardForm = ({ addOrEditCard, currentId, currentCard }) => {
     }
 
     await addOrEditCard(values);
-    setValues({ url: "", name: "", description: "", image: "", category: "", subcategory: "" });
+    setValues({ 
+      url: "", 
+      name: "", 
+      description: "", 
+      image: "", 
+      category: "", 
+      subcategory: "" 
+    });
     setError("");
   };
 
   return (
     <div className="container">
       <div className="card-form m-1 p-1">
-        <h3>Ingrese el nuevo contenido:</h3>
+        <h3>{currentCard ? "Editar contenido" : "Ingrese el nuevo contenido:"}</h3>
         <form
           onSubmit={handleSubmit}
           className="card card-body bg-secondary text-light"
@@ -131,7 +143,7 @@ export const CardForm = ({ addOrEditCard, currentId, currentCard }) => {
             value={values.subcategory}
             onChange={handleInputChange}
             required
-            disabled={!values.category} // Bloquea hasta elegir categoría
+            disabled={!values.category}
           >
             <option value="">Seleccioná una subcategoría</option>
             {currentSubcategories.map((sub) => (
@@ -142,10 +154,11 @@ export const CardForm = ({ addOrEditCard, currentId, currentCard }) => {
           {error && <small className="text-warning">{error}</small>}
 
           <button className="btn btn-primary btn-block">
-            {currentId ? "Actualizar" : "Enviar"}
+            {currentCard ? "Actualizar" : "Enviar"}
           </button>
         </form>
       </div>
     </div>
   );
 };
+

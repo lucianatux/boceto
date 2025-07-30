@@ -1,18 +1,18 @@
 import { useState, useEffect, useContext } from "react";
 import { db } from "../../Firebase";
 import { AuthContext } from "../Auth/AuthContext";
-import { SearchContext } from "../SearchContext"; 
-import {
-  collection,
-  doc,
-  onSnapshot,
-  deleteDoc,
-} from "firebase/firestore";
+import { SearchContext } from "../SearchContext";
+import { collection, doc, onSnapshot, deleteDoc } from "firebase/firestore";
 
-export const CardList = ({ category, subcategory, setCurrentId, cardsToShow }) => {
+export const CardList = ({
+  category,
+  subcategory,
+  setCurrentCard,
+  cardsToShow,
+}) => {
   const [cards, setCards] = useState([]);
   const { currentUser } = useContext(AuthContext);
-  const { searchTerm } = useContext(SearchContext); 
+  const { searchTerm } = useContext(SearchContext);
   const [expandedCardId, setExpandedCardId] = useState(null);
 
   useEffect(() => {
@@ -39,18 +39,21 @@ export const CardList = ({ category, subcategory, setCurrentId, cardsToShow }) =
   const maxChars = 200;
 
   // Si nos pasan cardsToShow usamos esa lista directamente, sino filtramos
-  const displayedCards = cardsToShow ?? cards.filter((card) => {
-    // Si hay texto en búsqueda, ignoramos categoría y subcategoría (ya filtrado afuera si corresponde)
-    if (searchTerm.trim() !== "") {
-      return (
-        card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (card.description && card.description.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
-    }
+  const displayedCards =
+    cardsToShow ??
+    cards.filter((card) => {
+      // Si hay texto en búsqueda, ignoramos categoría y subcategoría (ya filtrado afuera si corresponde)
+      if (searchTerm.trim() !== "") {
+        return (
+          card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (card.description &&
+            card.description.toLowerCase().includes(searchTerm.toLowerCase()))
+        );
+      }
 
-    // Si no hay búsqueda, filtramos por categoría y subcategoría
-    return card.category === category && card.subcategory === subcategory;
-  });
+      // Si no hay búsqueda, filtramos por categoría y subcategoría
+      return card.category === category && card.subcategory === subcategory;
+    });
 
   const onDeleteCard = async (id) => {
     if (window.confirm("¿Estás seguro de que querés borrar esta card?")) {
@@ -67,22 +70,28 @@ export const CardList = ({ category, subcategory, setCurrentId, cardsToShow }) =
     <div className="cards-container">
       {displayedCards.map((card) => {
         const isExpanded = expandedCardId === card.id;
-        const shouldTruncate = card.description && card.description.length > maxChars;
-        const displayedDescription = isExpanded || !shouldTruncate
-          ? card.description
-          : card.description.slice(0, maxChars) + "...";
+        const shouldTruncate =
+          card.description && card.description.length > maxChars;
+        const displayedDescription =
+          isExpanded || !shouldTruncate
+            ? card.description
+            : card.description.slice(0, maxChars) + "...";
 
         return (
-          <div className={`custom-card ${card.category} ${card.subcategory}`} key={card.id}>
+          <div
+            className={`custom-card ${card.category} ${card.subcategory}`}
+            key={card.id}
+          >
             {currentUser && (
               <div className="card-actions">
                 <i
                   className="material-icons"
-                  onClick={() => setCurrentId(card.id)}
+                  onClick={() => setCurrentCard(card)} // pasás la card entera
                   title="Editar"
                 >
                   edit
                 </i>
+
                 <i
                   className="material-icons"
                   onClick={() => onDeleteCard(card.id)}

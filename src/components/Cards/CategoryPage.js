@@ -10,34 +10,37 @@ export const CategoryPage = ({ category }) => {
   const { currentUser } = useContext(AuthContext);
   const { searchTerm } = useContext(SearchContext);
 
-  const [currentId, setCurrentId] = useState("");
+  const [currentCardData, setCurrentCardData] = useState(null);
 
   const addOrEditCard = async (cardObject) => {
     try {
-      if (currentId === "") {
+      if (currentCardData === null) {
+        // Nueva card
         const newDocRef = doc(collection(db, "cards"));
         await setDoc(newDocRef, cardObject);
         console.log("New card added");
       } else {
-        const cardDocRef = doc(db, "cards", currentId);
+        // Editar card existente
+        const cardDocRef = doc(db, "cards", currentCardData.id);
         await setDoc(cardDocRef, cardObject, { merge: true });
         console.log("Card updated");
       }
-      setCurrentId("");
+      setCurrentCardData(null); // Limpiar form después
     } catch (error) {
       console.error("Error saving card:", error);
     }
   };
 
-  const subcategories = category === "videos"
-    ? ["propios", "recomendados"]
-    : category === "libros"
-    ? ["propios", "recomendados"]
-    : category === "comunidad"
-    ? ["vedanta", "advaita vedanta", "upanishads", "vedas", "otros"]
-    : category === "inicio"
-    ? ["novedades", "destacados"]
-    : [""];
+  const subcategories =
+    category === "videos"
+      ? ["propios", "recomendados"]
+      : category === "libros"
+      ? ["propios", "recomendados"]
+      : category === "comunidad"
+      ? ["vedanta", "advaita vedanta", "upanishads", "vedas", "otros"]
+      : category === "inicio"
+      ? ["novedades", "destacados"]
+      : [""];
 
   return (
     <div className="category-page">
@@ -46,24 +49,17 @@ export const CategoryPage = ({ category }) => {
       {currentUser && (
         <CardForm
           addOrEditCard={addOrEditCard}
-          currentId={currentId}
-          currentCard={{
-            url: "",
-            name: "",
-            description: "",
-            image: "",
-            category,
-            subcategory: "",
-          }}
+          currentId={currentCardData ? currentCardData.id : ""}
+          currentCard={currentCardData}
         />
       )}
 
       {searchTerm.trim() !== "" ? (
-        // Si hay búsqueda, mostramos un único CardList sin filtrar por categoría/subcategoría
+        // Si hay búsqueda, mostramos un único CardList sin filtrar por subcategoría
         <CardList
-          setCurrentId={setCurrentId}
+          setCurrentCard={setCurrentCardData}
           isSearchResults={true}
-          searchTerm={searchTerm} // Pasamos el término para que filtre dentro del CardList
+          searchTerm={searchTerm}
         />
       ) : (
         // Si no hay búsqueda, mostramos las subsecciones normalmente
@@ -73,8 +69,7 @@ export const CategoryPage = ({ category }) => {
             <CardList
               category={category}
               subcategory={sub}
-              setCurrentId={setCurrentId}
-              searchTerm="" // Sin término de búsqueda, filtra normal
+              setCurrentCard={setCurrentCardData}
             />
           </div>
         ))
