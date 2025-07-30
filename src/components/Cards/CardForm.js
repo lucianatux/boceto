@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
+import { storage } from "../../Firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const CardForm = ({ addOrEditCard, currentCard }) => {
   const [values, setValues] = useState({ 
     url: "", 
     name: "", 
     description: "", 
-    image: "", 
+    image: "",        // sigue igual
+    image2: "",       // nuevo campo
     category: "", 
     subcategory: ""
   });
   const [error, setError] = useState("");
 
-  // 🧠 Subcategorías posibles según categoría
   const subcategoriesByCategory = {
     inicio: ["destacados", "novedades"],
     videos: ["propios", "recomendados"],
@@ -23,15 +25,22 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
 
   useEffect(() => {
     if (currentCard) {
-      // Si estamos editando, rellenamos campos
-      setValues({ ...currentCard });
+      setValues({ 
+        url: currentCard.url || "", 
+        name: currentCard.name || "", 
+        description: currentCard.description || "", 
+        image: currentCard.image || "", 
+        image2: currentCard.image2 || "",  // recupera también si ya existía
+        category: currentCard.category || "", 
+        subcategory: currentCard.subcategory || "" 
+      });
     } else {
-      // Si no, limpiamos
       setValues({ 
         url: "", 
         name: "", 
         description: "", 
         image: "", 
+        image2: "", 
         category: "", 
         subcategory: "" 
       });
@@ -45,6 +54,21 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
       setValues({ ...values, category: value, subcategory: "" });
     } else {
       setValues({ ...values, [name]: value });
+    }
+  };
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      const storageRef = ref(storage, `cards/${Date.now()}_${file.name}`);
+      await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(storageRef);
+      setValues(prev => ({ ...prev, image2: url }));
+      setError("");
+    } catch (err) {
+      console.error("Error uploading file:", err);
+      setError("Error al subir la imagen.");
     }
   };
 
@@ -62,6 +86,7 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
       name: "", 
       description: "", 
       image: "", 
+      image2: "", 
       category: "", 
       subcategory: "" 
     });
@@ -120,6 +145,17 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
             value={values.image}
             onChange={handleInputChange}
           />
+
+          <label htmlFor="file">O subí una imagen desde tu PC:</label>
+          <input
+            type="file"
+            accept="image/*"
+            className="form-control mb-3"
+            onChange={handleFileUpload}
+          />
+          {values.image2 && (
+            <small className="text-success">Imagen subida correctamente</small>
+          )}
 
           <label htmlFor="category">Categoría:</label>
           <select

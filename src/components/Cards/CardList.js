@@ -16,7 +16,6 @@ export const CardList = ({
   const [expandedCardId, setExpandedCardId] = useState(null);
 
   useEffect(() => {
-    // Solo hacemos fetch si NO nos pasaron cardsToShow desde afuera
     if (cardsToShow) return;
 
     const cardsCollectionRef = collection(db, "cards");
@@ -38,11 +37,9 @@ export const CardList = ({
 
   const maxChars = 200;
 
-  // Si nos pasan cardsToShow usamos esa lista directamente, sino filtramos
   const displayedCards =
     cardsToShow ??
     cards.filter((card) => {
-      // Si hay texto en búsqueda, ignoramos categoría y subcategoría (ya filtrado afuera si corresponde)
       if (searchTerm.trim() !== "") {
         return (
           card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -50,8 +47,6 @@ export const CardList = ({
             card.description.toLowerCase().includes(searchTerm.toLowerCase()))
         );
       }
-
-      // Si no hay búsqueda, filtramos por categoría y subcategoría
       return card.category === category && card.subcategory === subcategory;
     });
 
@@ -86,12 +81,11 @@ export const CardList = ({
               <div className="card-actions">
                 <i
                   className="material-icons"
-                  onClick={() => setCurrentCard(card)} // pasás la card entera
+                  onClick={() => setCurrentCard(card)}
                   title="Editar"
                 >
                   edit
                 </i>
-
                 <i
                   className="material-icons"
                   onClick={() => onDeleteCard(card.id)}
@@ -101,8 +95,12 @@ export const CardList = ({
                 </i>
               </div>
             )}
-            {card.image && (
-              <img src={card.image} alt={card.name} className="card-image" />
+            {(card.image2 || card.image) && (
+              <img
+                src={card.image2 || card.image}
+                alt={card.name}
+                className="card-image"
+              />
             )}
             <h4 className="card-title p-1">{card.name}</h4>
             <p className="card-description p-1">{displayedDescription}</p>
@@ -132,3 +130,4 @@ export const CardList = ({
     </div>
   );
 };
+

@@ -1,6 +1,7 @@
 {
   "name": "boceto",
   "version": "0.1.0",
+  "homepage": "https://lucianatux.github.io/boceto",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object":"",
@@ -9,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.3",
     "firebase": "^10.13.0",
+    "gh-pages": "^6.3.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
@@ -20,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
