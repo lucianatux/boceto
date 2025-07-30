@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/boceto/static/css/main.574913c7.css",
+    "main.css": "/boceto/static/css/main.9459e80f.css",
     "main.js": "/boceto/static/js/main.49bdc8ae.js",
     "static/js/453.f84a703d.chunk.js": "/boceto/static/js/453.f84a703d.chunk.js",
     "static/media/pa2.jpg": "/boceto/static/media/pa2.d12b34cb9cf6ad64a849.jpg",
@@ -10,12 +10,12 @@
     "index.html": "/boceto/index.html",
     "static/media/nav-icon5.svg": "/boceto/static/media/nav-icon5.5925320ec6423816272dec79bd272252.svg",
     "static/media/nav-icon1.svg": "/boceto/static/media/nav-icon1.721d5414c26365f117e71d46b6641cb2.svg",
-    "main.574913c7.css.map": "/boceto/static/css/main.574913c7.css.map",
+    "main.9459e80f.css.map": "/boceto/static/css/main.9459e80f.css.map",
     "main.49bdc8ae.js.map": "/boceto/static/js/main.49bdc8ae.js.map",
     "453.f84a703d.chunk.js.map": "/boceto/static/js/453.f84a703d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.574913c7.css",
+    "static/css/main.9459e80f.css",
     "static/js/main.49bdc8ae.js"
   ]
 }
