@@ -2,6 +2,8 @@ import tiktokIcon from "../../assets/iconos/nav-icon1.svg";
 import instagramIcon from "../../assets/iconos/nav-icon3.svg";
 import youtubeIcon from "../../assets/iconos/nav-icon5.svg";
 import { Container } from "react-bootstrap";
+import { Link} from "react-router-dom";
+
 
 export const Footer = () => {
   return (
@@ -15,6 +17,7 @@ export const Footer = () => {
               <span className="title-rest-word">SPAÑOL</span>
             </p>
           </div>
+          <div><Link to="/login" className="secret-btn">*</Link></div>
           <div className="social-icon d-flex justify-content-center align-items-center flex-wrap">
             <a
               href="https://www.youtube.com/@caminosdelvedanta"
