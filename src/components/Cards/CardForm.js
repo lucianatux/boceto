@@ -7,8 +7,7 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
     url: "", 
     name: "", 
     description: "", 
-    image: "",        // sigue igual
-    image2: "",       // nuevo campo
+    image: "",        
     category: "", 
     subcategory: ""
   });
@@ -25,22 +24,13 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
 
   useEffect(() => {
     if (currentCard) {
-      setValues({ 
-        url: currentCard.url || "", 
-        name: currentCard.name || "", 
-        description: currentCard.description || "", 
-        image: currentCard.image || "", 
-        image2: currentCard.image2 || "",  // recupera también si ya existía
-        category: currentCard.category || "", 
-        subcategory: currentCard.subcategory || "" 
-      });
+      setValues({ ...currentCard });
     } else {
       setValues({ 
         url: "", 
         name: "", 
         description: "", 
         image: "", 
-        image2: "", 
         category: "", 
         subcategory: "" 
       });
@@ -57,20 +47,7 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
     }
   };
 
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    try {
-      const storageRef = ref(storage, `cards/${Date.now()}_${file.name}`);
-      await uploadBytes(storageRef, file);
-      const url = await getDownloadURL(storageRef);
-      setValues(prev => ({ ...prev, image2: url }));
-      setError("");
-    } catch (err) {
-      console.error("Error uploading file:", err);
-      setError("Error al subir la imagen.");
-    }
-  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -86,7 +63,6 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
       name: "", 
       description: "", 
       image: "", 
-      image2: "", 
       category: "", 
       subcategory: "" 
     });
@@ -145,17 +121,6 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
             value={values.image}
             onChange={handleInputChange}
           />
-
-          <label htmlFor="file">O subí una imagen desde tu PC:</label>
-          <input
-            type="file"
-            accept="image/*"
-            className="form-control mb-3"
-            onChange={handleFileUpload}
-          />
-          {values.image2 && (
-            <small className="text-success">Imagen subida correctamente</small>
-          )}
 
           <label htmlFor="category">Categoría:</label>
           <select

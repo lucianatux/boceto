@@ -95,12 +95,8 @@ export const CardList = ({
                 </i>
               </div>
             )}
-            {(card.image2 || card.image) && (
-              <img
-                src={card.image2 || card.image}
-                alt={card.name}
-                className="card-image"
-              />
+             {card.image && (
+              <img src={card.image} alt={card.name} className="card-image" />
             )}
             <h4 className="card-title p-1">{card.name}</h4>
             <p className="card-description p-1">{displayedDescription}</p>
