@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { storage } from "../../Firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const CardForm = ({ addOrEditCard, currentCard }) => {
   const [values, setValues] = useState({ 
