@@ -36,7 +36,8 @@ a {
   font-family: "Lora", sans-serif;
   font-size: 50px;
   color: #111;
-  padding: 3rem;
+  padding: 0 5%;
+  margin-bottom: 0%;
 }
 .title-rest-word {
   font-family: "Lora", sans-serif;
@@ -146,7 +147,7 @@ a {
 @media (min-width: 768px) {
   .menu .nav-link {
     font-size: 1rem; /* Tamaño de fuente normal, puedes usar 1.0rem o 1.1rem */
-    padding: 0 3rem ;
+    padding: 0 3rem;
   }
 }
 
@@ -396,6 +397,9 @@ a {
 }
 .secret-btn {
   text-decoration: none;
+  color: #eee;
+  font-size: 0.8rem;
+  cursor: default;
 }
 
 /*************************** Responsive *********************/

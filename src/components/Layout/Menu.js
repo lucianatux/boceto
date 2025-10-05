@@ -26,7 +26,7 @@ export const Menu = () => {
       {/*<Navbar bg="light" expand="sm" className="px-2">*/}
       <Navbar bg="light" className="px-2">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" className="d-flex flex-column flex-md-row  justify-content-md-between">
+        <Navbar.Collapse id="basic-navbar-nav" className="d-flex flex-column flex-md-row  justify-content-md-around">
           {/* Menú principal centrado */}
           <Nav className="elem1 d-flex align-items-center">
             <Nav.Link

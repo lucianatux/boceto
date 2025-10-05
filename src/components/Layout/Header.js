@@ -14,8 +14,8 @@ export const Header = () => {
 
   return (
     <header className="header">
-        <div className="d-flex flex-column-reverse flex-md-row  justify-content-left header-content">
-          <p className="title-first-letter text-center mb-2 mb-md-0">
+        <div className="d-flex flex-column-reverse flex-md-row  justify-content-left align-items-center header-content">
+          <p className="title-first-letter text-center">
             V<span className="title-rest-word">EDANTA</span> E
             <span className="title-rest-word">N</span> E
             <span className="title-rest-word">SPAÑOL</span>
