@@ -293,7 +293,16 @@ a {
   font-weight: 600;
   color: #800080;
 }
-
+.custom-card.inicio .card-image {
+  aspect-ratio: 16 / 9;
+}
+.custom-card.videos .card-image {
+  aspect-ratio: 16 / 9;
+}
+.custom-card.videos.shorts .card-image {
+  aspect-ratio: 9 / 16;
+  max-width: 200px;
+} 
 .custom-card.libros {
   width: 250px;
 }
@@ -310,7 +319,7 @@ a {
 .custom-card.inicio.destacados {
   background-color: #f5d0b2;
 }
-.custom-card.videos.propios {
+.custom-card.videos.videos {
   background-color: #eee;
 }
 .custom-card.videos.recomendados {

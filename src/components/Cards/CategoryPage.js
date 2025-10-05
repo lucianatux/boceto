@@ -33,7 +33,7 @@ export const CategoryPage = ({ category }) => {
 
   const subcategories =
     category === "videos"
-      ? ["propios", "recomendados"]
+      ? ["videos", "shorts"]
       : category === "libros"
       ? ["propios", "recomendados"]
       : category === "comunidad"

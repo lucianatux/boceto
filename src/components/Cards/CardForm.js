@@ -13,7 +13,7 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
 
   const subcategoriesByCategory = {
     inicio: ["destacados", "novedades"],
-    videos: ["propios", "recomendados"],
+    videos: ["videos", "shorts"],
     libros: ["propios", "recomendados"],
     comunidad: ["vedanta", "advaita vedanta", "upanishads", "vedas", "otros"]
   };
