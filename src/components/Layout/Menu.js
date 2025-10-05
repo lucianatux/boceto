@@ -2,8 +2,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Auth/AuthContext";
-import { SearchContext } from "../SearchContext"; 
-
+import { SearchContext } from "../SearchContext";
 
 import tiktokIcon from "../../assets/iconos/tiktok5.png";
 import instagramIcon from "../../assets/iconos/nav-icon3.svg";
@@ -24,16 +23,19 @@ export const Menu = () => {
 
   return (
     <div className="menu">
-      <Navbar bg="light" expand="lg" className="px-2">
+      {/*<Navbar bg="light" expand="sm" className="px-2">*/}
+      <Navbar bg="light" className="px-2">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          
+        <Navbar.Collapse id="basic-navbar-nav" className="d-flex flex-column flex-md-row  justify-content-md-between">
           {/* Menú principal centrado */}
-          <Nav className="d-flex w-100 justify-content-center">
+          <Nav className="elem1 d-flex align-items-center">
             <Nav.Link
               as={Link}
               to={currentUser ? "/inicio-edit" : "/"}
-              active={location.pathname === "/" || location.pathname === "/inicio-edit"}
+              active={
+                location.pathname === "/" ||
+                location.pathname === "/inicio-edit"
+              }
             >
               Inicio
             </Nav.Link>
@@ -58,10 +60,17 @@ export const Menu = () => {
             >
               Preguntas
             </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/diccionario"
+              active={location.pathname === "/diccionario"}
+            >
+              Diccionario
+            </Nav.Link>
           </Nav>
 
           {/* Input de búsqueda + íconos */}
-          <div className="d-flex align-items-center ms-auto">
+          <div className="elem2 d-flex align-items-center">
             <input
               type="text"
               placeholder="Buscar..."
@@ -94,7 +103,6 @@ export const Menu = () => {
               </a>
             </div>
           </div>
-
         </Navbar.Collapse>
       </Navbar>
     </div>

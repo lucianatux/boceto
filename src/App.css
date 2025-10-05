@@ -35,20 +35,24 @@ a {
 .title-first-letter {
   font-family: "Lora", sans-serif;
   font-size: 50px;
-  color: #800080;
+  color: #111;
+  padding: 3rem;
 }
 .title-rest-word {
   font-family: "Lora", sans-serif;
   font-size: 36px;
-  color: #800080;
+  color: #111;
 }
 
 @media (max-width: 768px) {
   .title-first-letter {
     font-size: 30px;
+    padding: 0.5rem;
+    color: #eee;
   }
   .title-rest-word {
     font-size: 22px;
+    color: #eee;
   }
   .btn-edition {
     font-size: 12px;
@@ -103,31 +107,46 @@ a {
 
 /*************************** Header *********************/
 .header-content {
-  background-image: url("./assets/fotos/pa2.jpg");
+  background-image: url("./assets/fotos/pa7.jpg");
   background-repeat: no-repeat;
   background-position: top;
-  width: 100%;
+  width: 1580px;
   height: 150px;
 }
-
+@media (max-width: 768px) {
+  .header-content {
+    width: 100%;
+  }
+}
 /*************************** Menu *********************/
 
 .menu {
   .nav-link:hover {
     background-color: #ececec;
   }
-  
-  .search-input {
-  border-radius: 8px;
-  padding: 4px 8px;
-}
 
+  .search-input {
+    border-radius: 8px;
+    padding: 4px 8px;
+  }
 
   /* Resalta el enlace activo */
   .nav-link.active {
     color: #800080 !important;
     font-weight: 600; /* un poco más negrita */
     border-bottom: 2px solid #561256; /* subrayado elegante */
+  }
+}
+/* Estilos para Pantallas Pequeñas (Móviles) */
+.menu .nav-link {
+  font-size: 0.85rem; /* Ajusta este valor al tamaño que desees */
+}
+
+/* Restablece el tamaño de fuente a partir de la pantalla mediana (768px) */
+@media (min-width: 768px) {
+  .menu .nav-link {
+    font-size: 1rem; /* Tamaño de fuente normal, puedes usar 1.0rem o 1.1rem */
+    padding: 0 3rem ;
   }
 }
 
@@ -164,7 +183,6 @@ a {
     height: 250px;
   }
 }
-
 
 /*************************** Card *********************/
 .cards-container {
@@ -283,7 +301,6 @@ a {
   width: 200px;
   padding-top: 10px;
   object-fit: contain;
-
 }
 
 .custom-card.inicio.novedades {
@@ -305,7 +322,7 @@ a {
   background-color: #eee;
 }
 .custom-card.comunidad {
-    width: 320px;
+  width: 320px;
 }
 
 /*************************** Footer *********************/
@@ -330,7 +347,7 @@ a {
   }
 }
 .footer-content {
-  background-image: url("./assets/fotos/pa2.jpg");
+  background-image: url("./assets/fotos/pa7.jpg");
   background-repeat: no-repeat;
   background-position: top;
   width: 100%;
@@ -377,7 +394,7 @@ a {
   filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%)
     hue-rotate(346deg) brightness(95%) contrast(86%);
 }
-.secret-btn{
+.secret-btn {
   text-decoration: none;
 }
 
