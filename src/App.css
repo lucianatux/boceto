@@ -302,7 +302,7 @@ a {
 .custom-card.videos.shorts .card-image {
   aspect-ratio: 9 / 16;
   max-width: 200px;
-} 
+}
 .custom-card.libros {
   width: 250px;
 }
@@ -340,7 +340,7 @@ a {
   background-color: #ececec;
   height: 150px;
   padding: 10px 20px;
-
+}
   .grouped-items {
     display: flex;
     flex-wrap: wrap;
@@ -355,7 +355,7 @@ a {
   .title-rest-word {
     font-size: 22px;
   }
-}
+
 .footer-content {
   background-image: url("./assets/fotos/pa7.jpg");
   background-repeat: no-repeat;
@@ -415,18 +415,21 @@ a {
 
 @media (max-width: 568px) {
   .footer {
-    height: 30vh;
-  }
-
-  .grouped-items {
-    width: 50%;
+    .title-first-letter {
+      font-size: 24px;
+      color: #111;
+    }
+    .title-rest-word {
+      font-size: 16px;
+      color: #111;
+    }
   }
 
   .social-icon {
-    width: 50%;
+    width: 20%;
   }
   .social-icon a {
-    width: 42px !important;
-    height: 42px !important;
+    width: 32px !important;
+    height: 32px !important;
   }
 }
