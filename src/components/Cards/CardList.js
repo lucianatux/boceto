@@ -43,18 +43,18 @@ export const CardList = ({
 
   const displayedCards =
     cardsToShow ??
-    cards.filter((card) => {
-      if (searchTerm.trim() !== "") {
-        return (
-          card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (card.description &&
-            card.description.toLowerCase().includes(searchTerm.toLowerCase()))
-        );
-      }
-      return card.category === category && card.subcategory === subcategory;
-    })
-    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-    
+    cards
+      .filter((card) => {
+        if (searchTerm.trim() !== "") {
+          return (
+            card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            (card.description &&
+              card.description.toLowerCase().includes(searchTerm.toLowerCase()))
+          );
+        }
+        return card.category === category && card.subcategory === subcategory;
+      })
+      .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
   const onDeleteCard = async (id) => {
     if (window.confirm("¿Estás seguro de que querés borrar esta card?")) {
@@ -101,9 +101,17 @@ export const CardList = ({
                 </i>
               </div>
             )}
-             {card.image && (
-              <img src={card.image} alt={card.name} className="card-image" />
+            {card.image && (
+              <a
+                href={card.url}
+                target="_blank"
+                rel="noreferrer"
+                className="card-image-link"
+              >
+                <img src={card.image} alt={card.name} className="card-image" />
+              </a>
             )}
+
             <h4 className="card-title p-1">{card.name}</h4>
             <p className="card-description p-1">{displayedDescription}</p>
 
@@ -132,4 +140,3 @@ export const CardList = ({
     </div>
   );
 };
-
