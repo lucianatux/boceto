@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../Firebase";
 
 export const Header = () => {
-  const { currentUser, dispatch } = useContext(AuthContext);
+  const { currentUser} = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    dispatch({ type: "LOGOUT" });
-    localStorage.removeItem("user");
+  const handleLogout = async() => {
+    await signOut(auth);
     navigate("/");
   };
 

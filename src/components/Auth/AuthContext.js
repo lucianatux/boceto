@@ -26,10 +26,10 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // Opcional para guardar en local storage
+  /*Opcional para guardar en local storage
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(state.currentUser));
-  }, [state.currentUser]);
+  }, [state.currentUser]);*/
 
   return (
     <AuthContext.Provider value={{ currentUser: state.currentUser, dispatch }}>
