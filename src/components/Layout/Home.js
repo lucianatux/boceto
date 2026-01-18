@@ -21,7 +21,7 @@ export const Home = () => {
             </Link>
             <Carousel.Caption>
               <h3>Videos</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <p></p>
             </Carousel.Caption>
           </Carousel.Item>
 
@@ -36,7 +36,7 @@ export const Home = () => {
             </Link>
             <Carousel.Caption>
               <h3>Libros</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p></p>
             </Carousel.Caption>
           </Carousel.Item>
 
@@ -51,7 +51,7 @@ export const Home = () => {
             </Link>
             <Carousel.Caption>
               <h3>Preguntas y respuestas</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+              <p></p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
