@@ -1,3 +1,4 @@
+// Componente principal que define las rutas, el layout general y la protección de acceso por autenticación.
 import React, { useContext } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -53,7 +54,6 @@ function App() {
       </Routes>
 
       {!isLoginRoute && <Footer />}
-
     </div>
   );
 }

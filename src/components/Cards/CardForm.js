@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 
+/*
+  Formulario reutilizable para crear o editar tarjetas de contenido,
+  gestionando estado local, validaciones básicas y subcategorías dinámicas.
+*/
 export const CardForm = ({ addOrEditCard, currentCard }) => {
   const [values, setValues] = useState({ 
+    order: "",
     url: "", 
     name: "", 
     description: "", 
@@ -25,6 +30,7 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
       setValues({ ...currentCard });
     } else {
       setValues({ 
+        order: "",
         url: "", 
         name: "", 
         description: "", 
@@ -38,25 +44,34 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === "category") {
+
+    if (name === "order") {
+      setValues({ ...values, order: Number(value) });
+    } else if (name === "category") {
       setValues({ ...values, category: value, subcategory: "" });
     } else {
       setValues({ ...values, [name]: value });
     }
   };
 
-  
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!values.url || !values.name || !values.category || !values.subcategory) {
+    if (
+      values.order === "" ||
+      !values.url ||
+      !values.name ||
+      !values.category ||
+      !values.subcategory
+    ) {
       setError("Por favor completá los campos obligatorios.");
       return;
     }
 
     await addOrEditCard(values);
+
     setValues({ 
+      order: "",
       url: "", 
       name: "", 
       description: "", 
@@ -75,6 +90,18 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
           onSubmit={handleSubmit}
           className="card card-body bg-secondary text-light"
         >
+
+          <label htmlFor="order">Orden:</label>
+          <input
+            type="number"
+            className="form-control mb-3"
+            placeholder="1, 2, 3..."
+            name="order"
+            value={values.order}
+            onChange={handleInputChange}
+            required
+          />
+
           <label htmlFor="url">URL</label>
           <div className="input-group mb-3">
             <div className="input-group-text bg-light">
@@ -160,4 +187,5 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
     </div>
   );
 };
+
 

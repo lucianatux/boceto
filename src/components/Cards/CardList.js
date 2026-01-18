@@ -3,7 +3,11 @@ import { db } from "../../Firebase";
 import { AuthContext } from "../Auth/AuthContext";
 import { SearchContext } from "../SearchContext";
 import { collection, doc, onSnapshot, deleteDoc } from "firebase/firestore";
-
+/*
+  Lista de tarjetas que obtiene datos en tiempo real desde Firestore,
+  filtra por categoría, subcategoría o búsqueda y permite editar o eliminar
+  contenido según el estado de autenticación.
+*/
 export const CardList = ({
   category,
   subcategory,
@@ -48,7 +52,9 @@ export const CardList = ({
         );
       }
       return card.category === category && card.subcategory === subcategory;
-    });
+    })
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+    
 
   const onDeleteCard = async (id) => {
     if (window.confirm("¿Estás seguro de que querés borrar esta card?")) {

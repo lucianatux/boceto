@@ -1,10 +1,11 @@
+// Contexto de autenticación que gestiona el estado del usuario y escucha cambios de sesión desde Firebase.
 import { createContext, useEffect, useReducer } from "react";
 import AuthReducer from "./AuthReducer";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../Firebase";
 
 const INITIAL_STATE = {
-  currentUser: null, // Podés simplificar, no hace falta leer localStorage ahora
+  currentUser: null,
 };
 
 export const AuthContext = createContext(INITIAL_STATE);
@@ -12,7 +13,7 @@ export const AuthContext = createContext(INITIAL_STATE);
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
 
-  // Escuchar cambios de autenticación en Firebase
+  // Escucha los cambios de autenticación en Firebase y actualiza el estado global.
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -25,7 +26,7 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // (opcional) Seguir guardando en localStorage si querés
+  // Opcional para guardar en local storage
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(state.currentUser));
   }, [state.currentUser]);
@@ -36,3 +37,4 @@ export const AuthContextProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+

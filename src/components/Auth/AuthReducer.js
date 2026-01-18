@@ -1,3 +1,4 @@
+// Reducer de autenticación que actualiza el usuario actual según las acciones de login y logout.
 const AuthReducer = (state, action) => {
     switch (action.type) {
       case "LOGIN": {

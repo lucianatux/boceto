@@ -5,7 +5,10 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import { CardForm } from "./CardForm";
 import { CardList } from "./CardList";
 import { SearchContext } from "../SearchContext";
-
+/*
+  Página de categoría que muestra tarjetas por subcategoría, permite buscar
+  contenido y habilita la creación o edición de cards según autenticación.
+*/
 export const CategoryPage = ({ category }) => {
   const { currentUser } = useContext(AuthContext);
   const { searchTerm } = useContext(SearchContext);

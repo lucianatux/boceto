@@ -1,3 +1,7 @@
+/*
+  Componente de login que autentica al usuario con Firebase y actualiza
+  el contexto de autenticación antes de redirigir a la zona de edición.
+*/
 import { useState, useContext } from "react";
 import {auth} from "../../Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
