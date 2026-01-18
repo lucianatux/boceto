@@ -36,7 +36,7 @@ export const CategoryPage = ({ category }) => {
 
   const subcategories =
     category === "videos"
-      ? ["videos", "shorts"]
+      ? ["videos ¿de qué hablan los vedas?", "videos los upanishad", "videos pensar vedanta", "videos pensar advaita vedanta", "shorts"]
       : category === "libros"
       ? ["propios", "recomendados"]
       : category === "comunidad"
@@ -68,7 +68,7 @@ export const CategoryPage = ({ category }) => {
         // Si no hay búsqueda, mostramos las subsecciones normalmente
         subcategories.map((sub) => (
           <div key={sub} className="subsection">
-            <h4>{sub.toUpperCase()}</h4>
+            <h6>{sub.toUpperCase()}</h6>
             <CardList
               category={category}
               subcategory={sub}
