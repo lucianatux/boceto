@@ -20,7 +20,7 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
     inicio: ["destacados", "novedades"],
     videos: ["videos ¿de qué hablan los vedas?", "videos los upanishad", "videos pensar vedanta", "videos pensar advaita vedanta", "shorts"],
     libros: ["propios", "recomendados"],
-    comunidad: ["vedanta", "advaita vedanta", "upanishads", "vedas", "otros"]
+    comunidad: ["Preguntas y Respuestas"]
   };
 
   const currentSubcategories = subcategoriesByCategory[values.category] || [];

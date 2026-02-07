@@ -62,10 +62,10 @@ export const Menu = () => {
             </Nav.Link>
             <Nav.Link
               as={Link}
-              to="/diccionario"
-              active={location.pathname === "/diccionario"}
+              to="/parapensar"
+              active={location.pathname === "/parapensar"}
             >
-              Diccionario
+              Para Pensar
             </Nav.Link>
           </Nav>
 

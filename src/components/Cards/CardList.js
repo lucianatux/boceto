@@ -132,7 +132,7 @@ export const CardList = ({
               rel="noreferrer"
               className="card-link"
             >
-              Ir al sitio
+              Ver más
             </a>
           </div>
         );

@@ -40,7 +40,7 @@ export const CategoryPage = ({ category }) => {
       : category === "libros"
       ? ["propios", "recomendados"]
       : category === "comunidad"
-      ? ["vedanta", "advaita vedanta", "upanishads", "vedas", "otros"]
+      ? ["Preguntas y Respuestas"]
       : category === "inicio"
       ? ["novedades", "destacados"]
       : [""];
