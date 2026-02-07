@@ -121,7 +121,7 @@ export const CardList = ({
                   onClick={() => setExpandedCardId(isExpanded ? null : card.id)}
                   className="read-more-btn"
                 >
-                  {isExpanded ? "Ver menos" : "Ver más"}
+                  {isExpanded ? "↑" : "↓"}
                 </button>
               </div>
             )}

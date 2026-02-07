@@ -123,7 +123,9 @@ a {
 
 .menu {
   .nav-link:hover {
-    color: #7d4c07 !important;
+    background-color: #80008075;
+    color: #fff !important;
+    border-radius: 8px;
   }
 
   .search-input {
@@ -133,14 +135,10 @@ a {
 
   .nav-link {
     color: #800080 !important;
-    border-left: 2px solid #abababa2;
-    border-right: 2px solid #abababa2;
-    margin: 2px;
   }
   .nav-link.active {
     font-weight: 600;
-    border-bottom: 2px solid #abababa2;
-    border-radius: 3px;
+    border-bottom: 2px solid #800080;
   }
 }
 /* Estilos para Pantallas Pequeñas (Móviles) */
@@ -268,12 +266,10 @@ a {
 .read-more-btn {
   background: none;
   border: none;
-  color: #800080;
   cursor: pointer;
-  padding: 0 10px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  margin-top: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  padding-right: 10px;
 }
 
 .read-more-btn:hover {
@@ -281,8 +277,7 @@ a {
 }
 
 .read-more-container {
-  text-align: right; /* o left, según prefieras */
-  margin-top: 4px;
+  text-align: right; 
 }
 
 /*************************** sections *********************/
