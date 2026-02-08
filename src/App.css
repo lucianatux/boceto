@@ -25,6 +25,11 @@ html {
   flex: 1;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
+
 ul {
   list-style: none;
 }
@@ -342,6 +347,7 @@ a {
   background-color: #ececec;
   height: 150px;
   padding: 10px 20px;
+  margin: 15px 0 0 0;
 }
 .grouped-items {
   display: flex;
