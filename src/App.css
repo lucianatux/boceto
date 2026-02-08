@@ -435,3 +435,75 @@ a {
     height: 32px !important;
   }
 }
+/*************************** Video subcategories *********************/
+
+.videos-intro {
+  max-width: 700px;
+  margin: 3rem auto 2rem;
+  text-align: center;
+}
+
+.videos-intro h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.8rem;
+}
+
+.videos-intro p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+}
+.video-path {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 720px;
+  margin: 1rem auto 1rem;
+}
+.video-step {
+  width: 80%;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: left;
+}
+.video-step:hover {
+  border-color: #800080;
+  background-color: #80008008;
+}
+.step-index {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #800080;
+  min-width: 24px;
+}
+.step-content h3 {
+  font-size: 1.05rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.step-content p {
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  color: #555;
+  line-height: 1.4;
+}
+.video-step.active {
+  border-color: #800080;
+  background-color: #80008012;
+}
+.steptitle{
+  font-size: 1rem;
+  font-weight: 600;
+}
+

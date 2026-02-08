@@ -108,7 +108,7 @@ export const CardList = ({
                 rel="noreferrer"
                 className="card-image-link"
               >
-                <img src={card.image} alt={card.name} className="card-image" />
+                <img src={card.image} alt={card.name} className="card-image" loading="lazy"/>
               </a>
             )}
 
