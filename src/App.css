@@ -507,3 +507,40 @@ a {
   font-weight: 600;
 }
 
+.video-desktop-layout {
+  display: flex;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .video-desktop-layout {
+    flex-direction: column;
+  }
+
+  .video-preview {
+    display: none;
+  }
+}
+
+/* desktop */
+@media (min-width: 769px) {
+  .video-path {
+    flex: 1;
+    padding: 20px;
+    margin: 10px;
+  }
+  .video-preview {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding-bottom: 2rem;
+  }
+
+  .video-preview .custom-card:first-child {
+    align-self: flex-start;
+  }
+}
+

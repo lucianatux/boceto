@@ -3,6 +3,7 @@ import { db } from "../../Firebase";
 import { AuthContext } from "../Auth/AuthContext";
 import { SearchContext } from "../SearchContext";
 import { collection, doc, onSnapshot, deleteDoc } from "firebase/firestore";
+
 /*
   Lista de tarjetas que obtiene datos en tiempo real desde Firestore,
   filtra por categoría, subcategoría o búsqueda y permite editar o eliminar
@@ -13,6 +14,8 @@ export const CardList = ({
   subcategory,
   setCurrentCard,
   cardsToShow,
+  onlyFirst = false,
+  skipFirst = false,
 }) => {
   const [cards, setCards] = useState([]);
   const { currentUser } = useContext(AuthContext);
@@ -36,6 +39,7 @@ export const CardList = ({
         console.error("Error fetching cards: ", error);
       }
     );
+
     return () => unsubscribe();
   }, [cardsToShow]);
 
@@ -49,12 +53,21 @@ export const CardList = ({
           return (
             card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             (card.description &&
-              card.description.toLowerCase().includes(searchTerm.toLowerCase()))
+              card.description
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase()))
           );
         }
         return card.category === category && card.subcategory === subcategory;
       })
       .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+  // 🔹 filtro extra para preview / resto
+  const finalCards = displayedCards.filter((_, index) => {
+    if (onlyFirst) return index === 0;
+    if (skipFirst) return index !== 0;
+    return true;
+  });
 
   const onDeleteCard = async (id) => {
     if (window.confirm("¿Estás seguro de que querés borrar esta card?")) {
@@ -69,10 +82,11 @@ export const CardList = ({
 
   return (
     <div className="cards-container">
-      {displayedCards.map((card) => {
+      {finalCards.map((card) => {
         const isExpanded = expandedCardId === card.id;
         const shouldTruncate =
           card.description && card.description.length > maxChars;
+
         const displayedDescription =
           isExpanded || !shouldTruncate
             ? card.description
@@ -101,6 +115,7 @@ export const CardList = ({
                 </i>
               </div>
             )}
+
             {card.image && (
               <a
                 href={card.url}
@@ -108,7 +123,12 @@ export const CardList = ({
                 rel="noreferrer"
                 className="card-image-link"
               >
-                <img src={card.image} alt={card.name} className="card-image" loading="lazy"/>
+                <img
+                  src={card.image}
+                  alt={card.name}
+                  className="card-image"
+                  loading="lazy"
+                />
               </a>
             )}
 
@@ -118,7 +138,9 @@ export const CardList = ({
             {shouldTruncate && (
               <div className="read-more-container">
                 <button
-                  onClick={() => setExpandedCardId(isExpanded ? null : card.id)}
+                  onClick={() =>
+                    setExpandedCardId(isExpanded ? null : card.id)
+                  }
                   className="read-more-btn"
                 >
                   {isExpanded ? "↑" : "↓"}
