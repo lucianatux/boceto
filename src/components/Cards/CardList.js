@@ -3,6 +3,7 @@ import { db } from "../../Firebase";
 import { AuthContext } from "../Auth/AuthContext";
 import { SearchContext } from "../SearchContext";
 import { collection, doc, onSnapshot, deleteDoc } from "firebase/firestore";
+import youtubeIcon from "../../assets/youtubeicon.png";
 
 /*
   Lista de tarjetas que obtiene datos en tiempo real desde Firestore,
@@ -37,7 +38,7 @@ export const CardList = ({
       },
       (error) => {
         console.error("Error fetching cards: ", error);
-      }
+      },
     );
 
     return () => unsubscribe();
@@ -53,9 +54,7 @@ export const CardList = ({
           return (
             card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             (card.description &&
-              card.description
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase()))
+              card.description.toLowerCase().includes(searchTerm.toLowerCase()))
           );
         }
         return card.category === category && card.subcategory === subcategory;
@@ -138,12 +137,10 @@ export const CardList = ({
             {shouldTruncate && (
               <div className="read-more-container">
                 <button
-                  onClick={() =>
-                    setExpandedCardId(isExpanded ? null : card.id)
-                  }
+                  onClick={() => setExpandedCardId(isExpanded ? null : card.id)}
                   className="read-more-btn"
                 >
-                  {isExpanded ? "↑" : "↓"}
+                  {isExpanded ? "leer menos" : "leer más"}
                 </button>
               </div>
             )}
@@ -154,7 +151,16 @@ export const CardList = ({
               rel="noreferrer"
               className="card-link"
             >
-              Ver más
+              {card.category === "libros" ? (
+                <span className="ver-mas-text">Ir al sitio</span>
+              ) : (
+                <img
+                  src={youtubeIcon}
+                  className="youtlink"
+                  loading="lazy"
+                  alt="YouTube"
+                />
+              )}
             </a>
           </div>
         );
