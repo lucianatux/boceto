@@ -18,8 +18,9 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
 
   const subcategoriesByCategory = {
     inicio: ["destacados", "novedades"],
-    videos: ["videos ¿de qué hablan los vedas?", "videos los upanishad", "videos pensar vedanta", "videos pensar advaita vedanta", "shorts"],
+    videos: ["videos ¿de qué hablan los vedas?", "videos los upanishad", "videos pensar vedanta", "videos pensar advaita vedanta"],
     libros: ["propios", "recomendados"],
+    shorts: ["shorts"],
     comunidad: ["Preguntas y Respuestas"]
   };
 
@@ -159,6 +160,7 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
             <option value="inicio">Inicio</option>
             <option value="videos">Videos</option>
             <option value="libros">Libros</option>
+            <option value="shorts">Shorts</option>
             <option value="comunidad">Preguntas</option>
           </select>
 

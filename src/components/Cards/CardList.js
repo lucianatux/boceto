@@ -61,7 +61,7 @@ export const CardList = ({
       })
       .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
-  // 🔹 filtro extra para preview / resto
+  //  filtro extra para preview / resto
   const finalCards = displayedCards.filter((_, index) => {
     if (onlyFirst) return index === 0;
     if (skipFirst) return index !== 0;
@@ -91,6 +91,9 @@ export const CardList = ({
             ? card.description
             : card.description.slice(0, maxChars) + "...";
 
+        const imageSrc =
+          card.category === "shorts" ? `${process.env.PUBLIC_URL}/shorts/${card.order}.jpg` : card.image;
+
         return (
           <div
             className={`custom-card ${card.category} ${card.subcategory}`}
@@ -115,7 +118,7 @@ export const CardList = ({
               </div>
             )}
 
-            {card.image && (
+            {imageSrc && (
               <a
                 href={card.url}
                 target="_blank"
@@ -123,7 +126,7 @@ export const CardList = ({
                 className="card-image-link"
               >
                 <img
-                  src={card.image}
+                  src={imageSrc}
                   alt={card.name}
                   className="card-image"
                   loading="lazy"

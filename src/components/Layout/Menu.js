@@ -37,42 +37,42 @@ export const Menu = () => {
                 location.pathname === "/inicio-edit"
               }
             >
-              Inicio
+              INICIO
             </Nav.Link>
             <Nav.Link
               as={Link}
               to="/videos"
               active={location.pathname === "/videos"}
             >
-              Videos
+              VIDEOS
             </Nav.Link>
               <Nav.Link
               as={Link}
               to="/shorts"
               active={location.pathname === "/shorts"}
             >
-              Shorts
+              SHORTS
             </Nav.Link>
             <Nav.Link
               as={Link}
               to="/comunidad"
               active={location.pathname === "/comunidad"}
             >
-              Preguntas
+              PREGUNTAS
             </Nav.Link>
             <Nav.Link
               as={Link}
               to="/parapensar"
               active={location.pathname === "/parapensar"}
             >
-              Para Pensar
+              PARA PENSAR
             </Nav.Link>
                 <Nav.Link
               as={Link}
               to="/libros"
               active={location.pathname === "/libros"}
             >
-              Libros
+              LIBROS
             </Nav.Link>
           </Nav>
 

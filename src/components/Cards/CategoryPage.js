@@ -13,8 +13,9 @@ export const CategoryPage = ({ category }) => {
   const [currentCardData, setCurrentCardData] = useState(null);
 
   // 🔹 Estado solo para videos (por defecto: Los Vedas)
-  const [selectedVideoSubcategory, setSelectedVideoSubcategory] =
-    useState("videos ¿de qué hablan los vedas?");
+  const [selectedVideoSubcategory, setSelectedVideoSubcategory] = useState(
+    "videos ¿de qué hablan los vedas?",
+  );
 
   // 🔹 Ref SOLO para mobile
   const videosRef = useRef(null);
@@ -66,15 +67,16 @@ export const CategoryPage = ({ category }) => {
           "videos los upanishad",
           "videos pensar vedanta",
           "videos pensar advaita vedanta",
-          "shorts",
         ]
       : category === "libros"
-      ? ["propios", "recomendados"]
-      : category === "comunidad"
-      ? ["Preguntas y Respuestas"]
-      : category === "inicio"
-      ? ["novedades", "destacados"]
-      : [""];
+        ? ["propios", "recomendados"]
+        : category === "shorts"
+          ? ["shorts"]
+          : category === "comunidad"
+            ? ["Preguntas y Respuestas"]
+            : category === "inicio"
+              ? ["novedades", "destacados"]
+              : [""];
 
   const handleVideoStepClick = (id) => {
     setSelectedVideoSubcategory(id);
@@ -111,8 +113,8 @@ export const CategoryPage = ({ category }) => {
           <div className="videos-intro">
             <h2>Recorrido sugerido</h2>
             <p>
-              Este es el orden recomendado para ver los videos.
-              Cada sección profundiza un poco más en el conocimiento.
+              Este es el orden recomendado para ver los videos. Cada sección
+              profundiza un poco más en el conocimiento.
             </p>
           </div>
 
@@ -188,5 +190,3 @@ export const CategoryPage = ({ category }) => {
     </div>
   );
 };
-
-
