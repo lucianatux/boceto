@@ -46,12 +46,12 @@ export const Menu = () => {
             >
               Videos
             </Nav.Link>
-            <Nav.Link
+              <Nav.Link
               as={Link}
-              to="/libros"
-              active={location.pathname === "/libros"}
+              to="/shorts"
+              active={location.pathname === "/shorts"}
             >
-              Libros
+              Shorts
             </Nav.Link>
             <Nav.Link
               as={Link}
@@ -66,6 +66,13 @@ export const Menu = () => {
               active={location.pathname === "/parapensar"}
             >
               Para Pensar
+            </Nav.Link>
+                <Nav.Link
+              as={Link}
+              to="/libros"
+              active={location.pathname === "/libros"}
+            >
+              Libros
             </Nav.Link>
           </Nav>
 
