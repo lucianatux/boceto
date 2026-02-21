@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
+//import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthContextProvider } from './components/Auth/AuthContext';
 import { SearchProvider } from "./components/SearchContext.js";
 
@@ -13,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // Renderiza la aplicación envolviéndola con StrictMode, Router y los contextos globales.
 root.render(
   <React.StrictMode>
-    <Router basename="/boceto">
+    <Router>
       <AuthContextProvider>
         <SearchProvider>
           <App />
