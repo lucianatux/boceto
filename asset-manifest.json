@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/boceto/static/css/main.f91a74c6.css",
-    "main.js": "/boceto/static/js/main.640d3073.js",
+    "main.css": "/boceto/static/css/main.58504e8b.css",
+    "main.js": "/boceto/static/js/main.ab940429.js",
     "static/js/453.f84a703d.chunk.js": "/boceto/static/js/453.f84a703d.chunk.js",
     "static/media/pa7.jpg": "/boceto/static/media/pa7.99dcf690b8fd90372ae2.jpg",
     "static/media/slide3.jpg": "/boceto/static/media/slide3.83109a244e989b955c14.jpg",
@@ -10,12 +10,12 @@
     "index.html": "/boceto/index.html",
     "static/media/nav-icon5.svg": "/boceto/static/media/nav-icon5.5925320ec6423816272dec79bd272252.svg",
     "static/media/nav-icon1.svg": "/boceto/static/media/nav-icon1.721d5414c26365f117e71d46b6641cb2.svg",
-    "main.f91a74c6.css.map": "/boceto/static/css/main.f91a74c6.css.map",
-    "main.640d3073.js.map": "/boceto/static/js/main.640d3073.js.map",
+    "main.58504e8b.css.map": "/boceto/static/css/main.58504e8b.css.map",
+    "main.ab940429.js.map": "/boceto/static/js/main.ab940429.js.map",
     "453.f84a703d.chunk.js.map": "/boceto/static/js/453.f84a703d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f91a74c6.css",
-    "static/js/main.640d3073.js"
+    "static/css/main.58504e8b.css",
+    "static/js/main.ab940429.js"
   ]
 }
