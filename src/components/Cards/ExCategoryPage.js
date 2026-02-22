@@ -13,11 +13,12 @@ export const CategoryPage = ({ category }) => {
 
   const [currentCardData, setCurrentCardData] = useState(null);
 
-  // Estado solo para videos (por defecto: Los Vedas)
-  const [selectedVideoSubcategory, setSelectedVideoSubcategory] =
-    useState("videos ¿de qué hablan los vedas?");
+  //  Estado solo para videos (por defecto: Los Vedas)
+  const [selectedVideoSubcategory, setSelectedVideoSubcategory] = useState(
+    "videos ¿de qué hablan los vedas?",
+  );
 
-  //  Ref SOLO para mobile
+  // Ref SOLO para mobile
   const videosRef = useRef(null);
 
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
@@ -67,15 +68,16 @@ export const CategoryPage = ({ category }) => {
           "videos los upanishad",
           "videos pensar vedanta",
           "videos pensar advaita vedanta",
-          "shorts",
         ]
       : category === "libros"
-      ? ["propios", "recomendados"]
-      : category === "comunidad"
-      ? ["Preguntas y Respuestas"]
-      : category === "inicio"
-      ? ["novedades", "destacados"]
-      : [""];
+        ? ["propios", "recomendados"]
+        : category === "shorts"
+          ? ["shorts"]
+          : category === "comunidad"
+            ? ["Preguntas y Respuestas"]
+            : category === "inicio"
+              ? ["novedades", "destacados"]
+              : [""];
 
   const handleVideoStepClick = (id) => {
     setSelectedVideoSubcategory(id);
@@ -112,12 +114,12 @@ export const CategoryPage = ({ category }) => {
           <div className="videos-intro">
             <h2>Recorrido sugerido</h2>
             <p>
-              Este es el orden recomendado para ver los videos.
-              Cada sección profundiza un poco más en el conocimiento.
+              Este es el orden recomendado para ver los videos. Cada sección
+              profundiza un poco más en el conocimiento.
             </p>
           </div>
 
-          //  BOTONES + PREVIEW (DESKTOP) 
+          // BOTONES + PREVIEW (DESKTOP) 
           <div className="video-desktop-layout">
             <div className="video-path">
               {videoPath.map((step, index) => (
@@ -141,7 +143,7 @@ export const CategoryPage = ({ category }) => {
               ))}
             </div>
 
-            //  PREVIEW SOLO DESKTOP 
+             // PREVIEW SOLO DESKTOP 
             {!isMobile && (
               <div className="video-preview">
                 <CardList
@@ -154,7 +156,7 @@ export const CategoryPage = ({ category }) => {
             )}
           </div>
 
-          // LISTADO 
+      //LISTADO 
           {isMobile ? (
             //  MOBILE → lista completa
             <div ref={videosRef}>
@@ -188,4 +190,6 @@ export const CategoryPage = ({ category }) => {
       )}
     </div>
   );
+};
+
 };*/
