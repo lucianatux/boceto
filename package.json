@@ -1,7 +1,7 @@
 {
-  "name": "boceto",
+  "name": "vedantaenespanol",
   "version": "0.1.0",
-  "homepage": "https://lucianatux.github.io/boceto",
+  "homepage": "https://vedantaenespanol.com",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "",
