@@ -92,7 +92,9 @@ export const CardList = ({
             : card.description.slice(0, maxChars) + "...";
 
         const imageSrc =
-          card.category === "shorts" ? `${process.env.PUBLIC_URL}/shorts/${card.order}.jpg` : card.image;
+          card.category === "shorts"
+            ? `${process.env.PUBLIC_URL}/shorts/${card.order}.jpg`
+            : card.image;
 
         return (
           <div
@@ -118,21 +120,30 @@ export const CardList = ({
               </div>
             )}
 
-            {imageSrc && (
-              <a
-                href={card.url}
-                target="_blank"
-                rel="noreferrer"
-                className="card-image-link"
-              >
+            {imageSrc &&
+              (card.category === "inicio" &&
+              card.subcategory === "destacados" ? (
                 <img
                   src={imageSrc}
                   alt={card.name}
                   className="card-image"
                   loading="lazy"
                 />
-              </a>
-            )}
+              ) : (
+                <a
+                  href={card.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="card-image-link"
+                >
+                  <img
+                    src={imageSrc}
+                    alt={card.name}
+                    className="card-image"
+                    loading="lazy"
+                  />
+                </a>
+              ))}
 
             <h4 className="card-title p-1">{card.name}</h4>
             <p className="card-description p-1">{displayedDescription}</p>
@@ -148,23 +159,27 @@ export const CardList = ({
               </div>
             )}
 
-            <a
-              href={card.url}
-              target="_blank"
-              rel="noreferrer"
-              className="card-link"
-            >
-              {card.category === "libros" ? (
-                <span className="ver-mas-text">Ir al sitio</span>
-              ) : (
-                <img
-                  src={youtubeIcon}
-                  className="youtlink"
-                  loading="lazy"
-                  alt="YouTube"
-                />
-              )}
-            </a>
+            {!(
+              card.category === "inicio" && card.subcategory === "destacados"
+            ) && (
+              <a
+                href={card.url}
+                target="_blank"
+                rel="noreferrer"
+                className="card-link"
+              >
+                {card.category === "libros" ? (
+                  <span className="ver-mas-text">Ir al sitio</span>
+                ) : (
+                  <img
+                    src={youtubeIcon}
+                    className="youtlink"
+                    loading="lazy"
+                    alt="YouTube"
+                  />
+                )}
+              </a>
+            )}
           </div>
         );
       })}

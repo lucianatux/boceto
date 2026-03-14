@@ -1,14 +1,18 @@
-import Carousel from "react-bootstrap/Carousel";
-import secondslide from "../../assets/fotos/slide1.jpg";
-import firstslide from "../../assets/fotos/slide1.jpg";
-import thirdslide from "../../assets/fotos/slide3.jpg";
+//import Carousel from "react-bootstrap/Carousel";
+//import secondslide from "../../assets/fotos/slide1.jpg";
+//import firstslide from "../../assets/fotos/slide1.jpg";
+//import thirdslide from "../../assets/fotos/slide3.jpg";
 import { CategoryPage } from "../Cards/CategoryPage";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
     <div className="home">
-      <div className="carousel-wrapper">
+      <div className="cards-wrapper">
+        <CategoryPage category="inicio" />
+      </div>
+            {/*  
+                       <div className="carousel-wrapper">
         <Carousel className="carousel" interval={3000} pause="hover">
           <Carousel.Item>
             <Link to="/videos">
@@ -56,10 +60,7 @@ export const Home = () => {
           </Carousel.Item>
         </Carousel>
       </div>
-
-      <div className="cards-wrapper">
-        <CategoryPage category="inicio" />
-      </div>
+                  */}
     </div>
   );
 };

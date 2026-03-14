@@ -71,7 +71,7 @@ export const CategoryPage = ({ category }) => {
           : category === "comunidad"
             ? ["Preguntas y Respuestas"]
             : category === "inicio"
-              ? ["novedades", "destacados"]
+              ? ["destacados"]
               : [""];
 
   const handleVideoStepClick = (id) => {
@@ -106,8 +106,6 @@ export const CategoryPage = ({ category }) => {
         />
       ) : category === "videos" ? (
         <>
-          
-
           {/*  BOTONES + PREVIEW (DESKTOP) */}
           <div className="video-desktop-layout">
             <div className="video-path">
@@ -165,7 +163,10 @@ export const CategoryPage = ({ category }) => {
       ) : (
         subcategories.map((sub) => (
           <div key={sub} className="subsection">
-            <h6>{sub.toUpperCase()}</h6>
+            {!(category === "inicio" && sub === "destacados") && (
+              <h6>{sub.toUpperCase()}</h6>
+            )}
+
             <CardList
               category={category}
               subcategory={sub}

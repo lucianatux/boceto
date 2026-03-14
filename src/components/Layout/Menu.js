@@ -26,7 +26,10 @@ export const Menu = () => {
       {/*<Navbar bg="light" expand="sm" className="px-2">*/}
       <Navbar bg="light" className="px-2">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" className="d-flex flex-column flex-md-row  justify-content-md-around">
+        <Navbar.Collapse
+          id="basic-navbar-nav"
+          className="d-flex flex-column flex-md-row  justify-content-md-around"
+        >
           {/* Menú principal centrado */}
           <Nav className="elem1 d-flex align-items-center">
             <Nav.Link
@@ -46,7 +49,7 @@ export const Menu = () => {
             >
               VIDEOS
             </Nav.Link>
-              <Nav.Link
+            <Nav.Link
               as={Link}
               to="/shorts"
               active={location.pathname === "/shorts"}
@@ -60,14 +63,14 @@ export const Menu = () => {
             >
               PREGUNTAS
             </Nav.Link>
-            <Nav.Link
+            {/*  <Nav.Link
               as={Link}
               to="/parapensar"
               active={location.pathname === "/parapensar"}
             >
-              PARA PENSAR
-            </Nav.Link>
-                <Nav.Link
+              PARA PENSAR       </Nav.Link> */}
+
+            <Nav.Link
               as={Link}
               to="/libros"
               active={location.pathname === "/libros"}

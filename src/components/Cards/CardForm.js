@@ -17,7 +17,8 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
   const [error, setError] = useState("");
 
   const subcategoriesByCategory = {
-    inicio: ["destacados", "novedades"],
+    //inicio: ["destacados", "novedades"],
+    inicio: ["destacados"],
     videos: ["videos ¿de qué hablan los vedas?", "videos los upanishad", "videos pensar vedanta", "videos pensar advaita vedanta"],
     libros: ["propios", "recomendados"],
     shorts: ["shorts"],
@@ -60,8 +61,6 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
 
     if (
       values.order === "" ||
-      !values.url ||
-      !values.name ||
       !values.category ||
       !values.subcategory
     ) {
