@@ -223,11 +223,11 @@ a {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-.custom-card.inicio.pc {
+.custom-card.inicio {
   box-shadow: none;
 }
 
-.custom-card.inicio.pc:hover {
+.custom-card.inicio:hover {
   box-shadow: none;
 }
 
@@ -250,6 +250,13 @@ a {
   color: #444;
   margin-bottom: 8px;
   padding: 10px;
+}
+
+.custom-card.inicio .card-description {
+  font-size: 1.2rem;
+}
+.custom-card.inicio .card-title {
+  font-size: 1.4rem;
 }
 
 .card-link {
@@ -326,7 +333,7 @@ a {
 }
 .custom-card.inicio.pc {
   aspect-ratio: 16 / 9;
-  width: 70vw;
+  width: 75vw;
   margin-top: 50px;
 }
 .custom-card.videos .card-image {
@@ -473,6 +480,13 @@ a {
   .custom-card.inicio .card-image {
     height: 70vh;
     margin: 10px auto;
+  }
+
+  .custom-card.inicio .card-description {
+    font-size: 1rem;
+  }
+  .custom-card.inicio .card-title {
+    font-size: 1rem;
   }
 }
 /*************************** Video subcategories *********************/

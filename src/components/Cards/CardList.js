@@ -44,7 +44,7 @@ export const CardList = ({
     return () => unsubscribe();
   }, [cardsToShow]);
 
-  const maxChars = 200;
+  const maxChars = 280;
 
   const displayedCards =
     cardsToShow ??
