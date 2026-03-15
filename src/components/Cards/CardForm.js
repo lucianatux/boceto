@@ -17,10 +17,10 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
   const [error, setError] = useState("");
 
   const subcategoriesByCategory = {
-    //inicio: ["destacados", "novedades"],
-    inicio: ["destacados"],
+    //inicio: ["pc", "novedades"],
+    inicio: ["pc", "celular"],
     videos: ["videos ¿de qué hablan los vedas?", "videos los upanishad", "videos pensar vedanta", "videos pensar advaita vedanta"],
-    libros: ["propios", "recomendados"],
+    libros: ["propios"],
     shorts: ["shorts"],
     comunidad: ["Preguntas y Respuestas"]
   };

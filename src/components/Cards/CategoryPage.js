@@ -19,8 +19,7 @@ export const CategoryPage = ({ category }) => {
 
   //  Ref SOLO para mobile
   const videosRef = useRef(null);
-
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const isMobile = window.innerWidth <= 768;
 
   const addOrEditCard = async (cardObject) => {
     try {
@@ -65,13 +64,13 @@ export const CategoryPage = ({ category }) => {
           "videos pensar advaita vedanta",
         ]
       : category === "libros"
-        ? ["propios", "recomendados"]
+        ? ["propios"]
         : category === "shorts"
           ? ["shorts"]
           : category === "comunidad"
             ? ["Preguntas y Respuestas"]
             : category === "inicio"
-              ? ["destacados"]
+              ? [isMobile ? "celular" : "pc"]
               : [""];
 
   const handleVideoStepClick = (id) => {
@@ -163,7 +162,7 @@ export const CategoryPage = ({ category }) => {
       ) : (
         subcategories.map((sub) => (
           <div key={sub} className="subsection">
-            {!(category === "inicio" && sub === "destacados") && (
+            {!(category === "inicio") && (
               <h6>{sub.toUpperCase()}</h6>
             )}
 

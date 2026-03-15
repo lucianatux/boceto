@@ -121,8 +121,7 @@ export const CardList = ({
             )}
 
             {imageSrc &&
-              (card.category === "inicio" &&
-              card.subcategory === "destacados" ? (
+              (card.category === "inicio" ? (
                 <img
                   src={imageSrc}
                   alt={card.name}
@@ -159,9 +158,7 @@ export const CardList = ({
               </div>
             )}
 
-            {!(
-              card.category === "inicio" && card.subcategory === "destacados"
-            ) && (
+            {!(card.category === "inicio") && (
               <a
                 href={card.url}
                 target="_blank"

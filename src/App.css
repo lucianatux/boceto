@@ -223,14 +223,13 @@ a {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-.custom-card.inicio.destacados {
+.custom-card.inicio.pc {
   box-shadow: none;
 }
 
-.custom-card.inicio.destacados:hover {
+.custom-card.inicio.pc:hover {
   box-shadow: none;
 }
-
 
 .card-image {
   width: 100%;
@@ -315,7 +314,6 @@ a {
   justify-content: center;
 }
 
-
 .subsection-title {
   font-size: 1.25rem;
   font-weight: 600;
@@ -323,10 +321,10 @@ a {
 }
 .custom-card.inicio .card-image {
   aspect-ratio: 16 / 9;
-  width: 70vw; 
+  width: 70vw;
   /*padding: 30px 30px 0px 30px; */
 }
-.custom-card.inicio.destacados {
+.custom-card.inicio.pc {
   aspect-ratio: 16 / 9;
   width: 70vw;
   margin-top: 50px;
@@ -469,6 +467,12 @@ a {
   .social-icon a {
     width: 32px !important;
     height: 32px !important;
+  }
+}
+@media (max-width: 768px) {
+  .custom-card.inicio .card-image {
+    height: 70vh;
+    margin: 10px auto;
   }
 }
 /*************************** Video subcategories *********************/
