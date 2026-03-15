@@ -478,7 +478,7 @@ a {
 }
 @media (max-width: 768px) {
   .custom-card.inicio .card-image {
-    height: 70vh;
+    height: 48vh;
     margin: 10px auto;
   }
 
