@@ -91,6 +91,7 @@ export const CardList = ({
             ? card.description
             : card.description.slice(0, maxChars) + "...";
 
+            
         const imageSrc =
           card.category === "shorts"
             ? `${process.env.PUBLIC_URL}/shorts/${card.order}.jpg`
