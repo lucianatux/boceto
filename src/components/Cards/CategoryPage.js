@@ -163,7 +163,11 @@ export const CategoryPage = ({ category }) => {
         subcategories.map((sub) => (
           <div key={sub} className="subsection">
             {!(category === "inicio") && (
-              <h6>{sub.toUpperCase()}</h6>
+              <h6>
+                {category === "libros" && sub === "propios"
+                  ? "CUENTOS- NOVELAS - ENSAYOS- MEMORIAS"
+                  : sub.toUpperCase()}
+              </h6>
             )}
 
             <CardList
