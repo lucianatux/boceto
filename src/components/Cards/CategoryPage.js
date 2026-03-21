@@ -39,19 +39,27 @@ export const CategoryPage = ({ category }) => {
   const videoPath = [
     {
       id: "videos ¿de qué hablan los vedas?",
-      title: "Conocé Los Vedas",
+      title: "Conoce Los Vedas",
+      description:
+        "10 videos con explicaciones simples del conocimiento del mundo y la conciencia.",
     },
     {
       id: "videos los upanishad",
-      title: "Conocé los Upanishads",
+      title: "Conoce los Upanishads",
+      description:
+        "10 videos con las ideas esenciales descubiertas en los antiguos Vedas.",
     },
     {
       id: "videos pensar vedanta",
       title: "Pensar Vedanta",
+      description:
+        "Cómo aplicaron este conocimiento la devoción, la filosofía y la ciencia.",
     },
     {
       id: "videos pensar advaita vedanta",
       title: "Pensar Advaita Vedanta",
+      description:
+        "Cómo se aplica hoy para liberarse de las ataduras del mundo moderno.",
     },
   ];
 
@@ -118,8 +126,13 @@ export const CategoryPage = ({ category }) => {
                 >
                   <span className="step-index">{index + 1}</span>
                   <div className="step-content">
-                    <p>
+                    <p className="step-p">
                       <span className="steptitle">{step.title}</span>{" "}
+                    </p>
+                    <p>
+                      <span className="stepdescription">
+                        {step.description}
+                      </span>{" "}
                     </p>
                   </div>
                 </button>
@@ -165,8 +178,13 @@ export const CategoryPage = ({ category }) => {
             {!(category === "inicio") && (
               <h6>
                 {category === "libros" && sub === "propios"
-                  ? "CUENTOS- NOVELAS - ENSAYOS- MEMORIAS"
-                  : sub.toUpperCase()}
+                  ? "CUENTOS- NOVELAS - ENSAYOS- MEMORIAS en formato IMPRESO o DIGITAL"
+                  : category === "shorts" && sub === "shorts"
+                    ? "LOS VIDEOS CORTOS MÁS VISTOS"
+                    : category === "comunidad" &&
+                        sub === "Preguntas y Respuestas"
+                      ? "PREGUNTAS con la RESPUESTA en un click"
+                      : sub.toUpperCase()}
               </h6>
             )}
 
