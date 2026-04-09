@@ -213,7 +213,7 @@ export const CardForm = ({ addOrEditCard, currentCard, onCancel, isLoading }) =>
             </button>
             <button
               type="button"
-              className="btn btn-outline-light btn-block mt-2"
+              className="btn btn-outline-light btn-block mx-2"
               onClick={onCancel}
             >
               Cancelar
