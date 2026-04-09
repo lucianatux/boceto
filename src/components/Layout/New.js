@@ -1,6 +1,6 @@
 
 //import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useEffect, useState } from "react";
+/*import { useEffect, useState } from "react";
 import {
   addDoc,
   collection,
@@ -109,7 +109,7 @@ export const New = ({ inputs, title }) => {
                  <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
-                 */}
+                 *//*}
                 
                 <input
                   type="file"
@@ -140,4 +140,4 @@ export const New = ({ inputs, title }) => {
     </div>
   );
 };
-
+*/

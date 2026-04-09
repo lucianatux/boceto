@@ -1,39 +1,80 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, useCallback } from "react";
 import { AuthContext } from "../Auth/AuthContext";
 import { db } from "../../Firebase";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { CardForm } from "./CardForm";
 import { CardList } from "./CardList";
 import { SearchContext } from "../SearchContext";
+import { Toast } from "../UI/Toast";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export const CategoryPage = ({ category }) => {
   const { currentUser } = useContext(AuthContext);
   const { searchTerm } = useContext(SearchContext);
 
   const [currentCardData, setCurrentCardData] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
 
-  //  Estado solo para videos (por defecto: Los Vedas)
+  // Toast state
+  const [toast, setToast] = useState(null);
+
+  const showToast = useCallback((message, type = "success") => {
+    setToast({ message, type });
+  }, []);
+
+  const clearToast = useCallback(() => {
+    setToast(null);
+  }, []);
+
+  // Estado solo para videos (por defecto: Los Vedas)
   const [selectedVideoSubcategory, setSelectedVideoSubcategory] = useState(
     "videos ¿de qué hablan los vedas?",
   );
 
-  //  Ref SOLO para mobile
+  // Ref SOLO para mobile
   const videosRef = useRef(null);
-  const isMobile = window.innerWidth <= 768;
+  const isMobile = useIsMobile();
 
   const addOrEditCard = async (cardObject) => {
+    setIsSaving(true);
     try {
       if (currentCardData === null) {
         const newDocRef = doc(collection(db, "cards"));
         await setDoc(newDocRef, cardObject);
+        showToast("Tarjeta creada correctamente", "success");
       } else {
         const cardDocRef = doc(db, "cards", currentCardData.id);
         await setDoc(cardDocRef, cardObject, { merge: true });
+        showToast("Tarjeta actualizada correctamente", "success");
       }
       setCurrentCardData(null);
+      setShowForm(false);
     } catch (error) {
       console.error("Error saving card:", error);
+      showToast("Error al guardar la tarjeta", "error");
+    } finally {
+      setIsSaving(false);
     }
+  };
+
+  // showForm: controla si se muestra el modal (tanto para crear como editar)
+  const [showForm, setShowForm] = useState(false);
+
+  const handleCancelEdit = () => {
+    setCurrentCardData(null);
+    setShowForm(false);
+  };
+
+  // Cuando se selecciona una card para editar, abrir el modal
+  const handleEditCard = (card) => {
+    setCurrentCardData(card);
+    setShowForm(true);
+  };
+
+  // Botón flotante: abrir modal vacío para crear
+  const handleFabClick = () => {
+    setCurrentCardData(null);
+    setShowForm(true);
   };
 
   const videoPath = [
@@ -84,7 +125,6 @@ export const CategoryPage = ({ category }) => {
   const handleVideoStepClick = (id) => {
     setSelectedVideoSubcategory(id);
 
-    //  SOLO en mobile hay scroll
     if (isMobile) {
       setTimeout(() => {
         videosRef.current?.scrollIntoView({
@@ -97,23 +137,47 @@ export const CategoryPage = ({ category }) => {
 
   return (
     <div className="category-page">
-      {currentUser && (
+      {/* Toast de feedback */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={clearToast}
+        />
+      )}
+
+      {/* Modal único para crear o editar (aparece centrado) */}
+      {currentUser && showForm && (
         <CardForm
           addOrEditCard={addOrEditCard}
           currentId={currentCardData ? currentCardData.id : ""}
           currentCard={currentCardData}
+          onCancel={handleCancelEdit}
+          isLoading={isSaving}
         />
+      )}
+
+      {/* Botón flotante para crear nueva tarjeta */}
+      {currentUser && !showForm && (
+        <button
+          className="fab-add-card"
+          onClick={handleFabClick}
+          aria-label="Crear nueva tarjeta"
+          title="Crear nueva tarjeta"
+        >
+          <i className="material-icons">add</i>
+        </button>
       )}
 
       {searchTerm.trim() !== "" ? (
         <CardList
-          setCurrentCard={setCurrentCardData}
+          setCurrentCard={handleEditCard}
           isSearchResults={true}
           searchTerm={searchTerm}
+          onToast={showToast}
         />
       ) : category === "videos" ? (
         <>
-          {/*  BOTONES + PREVIEW (DESKTOP) */}
           <div className="video-desktop-layout">
             <div className="video-path">
               {videoPath.map((step, index) => (
@@ -139,36 +203,35 @@ export const CategoryPage = ({ category }) => {
               ))}
             </div>
 
-            {/*  PREVIEW SOLO DESKTOP */}
             {!isMobile && (
               <div className="video-preview">
                 <CardList
                   category={category}
                   subcategory={selectedVideoSubcategory}
-                  setCurrentCard={setCurrentCardData}
+                  setCurrentCard={handleEditCard}
                   onlyFirst
+                  onToast={showToast}
                 />
               </div>
             )}
           </div>
 
-          {/*  LISTADO */}
           {isMobile ? (
-            //  MOBILE → lista completa
             <div ref={videosRef}>
               <CardList
                 category={category}
                 subcategory={selectedVideoSubcategory}
-                setCurrentCard={setCurrentCardData}
+                setCurrentCard={handleEditCard}
+                onToast={showToast}
               />
             </div>
           ) : (
-            //  DESKTOP → cards 2,3,4...
             <CardList
               category={category}
               subcategory={selectedVideoSubcategory}
-              setCurrentCard={setCurrentCardData}
+              setCurrentCard={handleEditCard}
               skipFirst
+              onToast={showToast}
             />
           )}
         </>
@@ -191,7 +254,8 @@ export const CategoryPage = ({ category }) => {
             <CardList
               category={category}
               subcategory={sub}
-              setCurrentCard={setCurrentCardData}
+              setCurrentCard={handleEditCard}
+              onToast={showToast}
             />
           </div>
         ))

@@ -1,28 +1,33 @@
 import { useState, useEffect } from "react";
 
 /*
-  Formulario reutilizable para crear o editar tarjetas de contenido,
-  gestionando estado local, validaciones básicas y subcategorías dinámicas.
+  Formulario reutilizable para crear o editar tarjetas de contenido.
+  Cuando se edita una tarjeta, aparece como un modal centrado en pantalla.
+  Cuando se crea una nueva, aparece inline como antes.
 */
-export const CardForm = ({ addOrEditCard, currentCard }) => {
-  const [values, setValues] = useState({ 
+export const CardForm = ({ addOrEditCard, currentCard, onCancel, isLoading }) => {
+  const [values, setValues] = useState({
     order: "",
-    url: "", 
-    name: "", 
-    description: "", 
-    image: "",        
-    category: "", 
-    subcategory: ""
+    url: "",
+    name: "",
+    description: "",
+    image: "",
+    category: "",
+    subcategory: "",
   });
   const [error, setError] = useState("");
 
   const subcategoriesByCategory = {
-    //inicio: ["pc", "novedades"],
     inicio: ["pc", "celular"],
-    videos: ["videos ¿de qué hablan los vedas?", "videos los upanishad", "videos pensar vedanta", "videos pensar advaita vedanta"],
+    videos: [
+      "videos ¿de qué hablan los vedas?",
+      "videos los upanishad",
+      "videos pensar vedanta",
+      "videos pensar advaita vedanta",
+    ],
     libros: ["propios"],
     shorts: ["shorts"],
-    comunidad: ["Preguntas y Respuestas"]
+    comunidad: ["Preguntas y Respuestas"],
   };
 
   const currentSubcategories = subcategoriesByCategory[values.category] || [];
@@ -31,14 +36,14 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
     if (currentCard) {
       setValues({ ...currentCard });
     } else {
-      setValues({ 
+      setValues({
         order: "",
-        url: "", 
-        name: "", 
-        description: "", 
-        image: "", 
-        category: "", 
-        subcategory: "" 
+        url: "",
+        name: "",
+        description: "",
+        image: "",
+        category: "",
+        subcategory: "",
       });
     }
     setError("");
@@ -59,38 +64,45 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      values.order === "" ||
-      !values.category ||
-      !values.subcategory
-    ) {
-      setError("Por favor completá los campos obligatorios.");
+    if (values.order === "" || !values.category || !values.subcategory) {
+      setError("Por favor completa los campos obligatorios.");
       return;
     }
 
     await addOrEditCard(values);
 
-    setValues({ 
+    setValues({
       order: "",
-      url: "", 
-      name: "", 
-      description: "", 
-      image: "", 
-      category: "", 
-      subcategory: "" 
+      url: "",
+      name: "",
+      description: "",
+      image: "",
+      category: "",
+      subcategory: "",
     });
     setError("");
   };
 
-  return (
-    <div className="container">
-      <div className="card-form m-1 p-1">
-        <h3>{currentCard ? "Editar contenido" : "Ingrese el nuevo contenido:"}</h3>
+  const isEditing = !!currentCard;
+
+  const formContent = (
+    <div className="card-form-modal-body">
+      <div>
+        <div className="card-form-header">
+          <h3>{isEditing ? "Editar contenido" : "Nuevo contenido"}</h3>
+          <button
+            type="button"
+            className="card-form-close-btn"
+            onClick={onCancel}
+            aria-label="Cerrar formulario"
+          >
+            <i className="material-icons">close</i>
+          </button>
+        </div>
         <form
           onSubmit={handleSubmit}
           className="card card-body bg-secondary text-light"
         >
-
           <label htmlFor="order">Orden:</label>
           <input
             type="number"
@@ -155,7 +167,7 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
             onChange={handleInputChange}
             required
           >
-            <option value="">Seleccioná una categoría</option>
+            <option value="">Selecciona una categoría</option>
             <option value="inicio">Inicio</option>
             <option value="videos">Videos</option>
             <option value="libros">Libros</option>
@@ -172,21 +184,55 @@ export const CardForm = ({ addOrEditCard, currentCard }) => {
             required
             disabled={!values.category}
           >
-            <option value="">Seleccioná una subcategoría</option>
+            <option value="">Selecciona una subcategoría</option>
             {currentSubcategories.map((sub) => (
-              <option key={sub} value={sub}>{sub}</option>
+              <option key={sub} value={sub}>
+                {sub}
+              </option>
             ))}
           </select>
 
           {error && <small className="text-warning">{error}</small>}
 
-          <button className="btn btn-primary btn-block">
-            {currentCard ? "Actualizar" : "Enviar"}
-          </button>
+          <div className="card-form-buttons">
+            <button
+              className="btn btn-primary btn-block"
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <span className="spinner-inline">
+                  <i className="material-icons spinner-icon">autorenew</i>
+                  Guardando...
+                </span>
+              ) : isEditing ? (
+                "Actualizar"
+              ) : (
+                "Enviar"
+              )}
+            </button>
+            <button
+              type="button"
+              className="btn btn-outline-light btn-block mt-2"
+              onClick={onCancel}
+            >
+              Cancelar
+            </button>
+          </div>
         </form>
       </div>
     </div>
   );
+
+  // Siempre renderizar como modal overlay
+  return (
+    <div className="card-form-overlay" onClick={onCancel}>
+      <div
+        className="card-form-modal"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {formContent}
+      </div>
+    </div>
+  );
 };
-
-
