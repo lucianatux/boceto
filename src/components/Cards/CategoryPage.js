@@ -102,6 +102,12 @@ export const CategoryPage = ({ category }) => {
       description:
         "Cómo se aplica hoy para liberarse de las ataduras del mundo moderno.",
     },
+     {
+      id: "videos los caminos del vedanta",
+      title: "Los Caminos del Vedanta",
+      description:
+        "La evolución del pensamiento en las relaciones con otras ciencias.",
+    },
   ];
 
   const subcategories =
@@ -111,6 +117,7 @@ export const CategoryPage = ({ category }) => {
           "videos los upanishad",
           "videos pensar vedanta",
           "videos pensar advaita vedanta",
+          "videos los caminos del vedanta",
         ]
       : category === "libros"
         ? ["propios"]

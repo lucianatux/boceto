@@ -5,7 +5,12 @@ import { useState, useEffect } from "react";
   Cuando se edita una tarjeta, aparece como un modal centrado en pantalla.
   Cuando se crea una nueva, aparece inline como antes.
 */
-export const CardForm = ({ addOrEditCard, currentCard, onCancel, isLoading }) => {
+export const CardForm = ({
+  addOrEditCard,
+  currentCard,
+  onCancel,
+  isLoading,
+}) => {
   const [values, setValues] = useState({
     order: "",
     url: "",
@@ -24,6 +29,7 @@ export const CardForm = ({ addOrEditCard, currentCard, onCancel, isLoading }) =>
       "videos los upanishad",
       "videos pensar vedanta",
       "videos pensar advaita vedanta",
+      "videos los caminos del vedanta",
     ],
     libros: ["propios"],
     shorts: ["shorts"],
@@ -130,14 +136,14 @@ export const CardForm = ({ addOrEditCard, currentCard, onCancel, isLoading }) =>
           </div>
 
           <label htmlFor="name">Título:</label>
-          <input
-            type="text"
+          <textarea
+            rows="2"
             className="form-control mb-3"
             placeholder="Title"
             name="name"
             value={values.name}
             onChange={handleInputChange}
-          />
+          ></textarea>
 
           <label htmlFor="description">Descripción:</label>
           <textarea
@@ -227,10 +233,7 @@ export const CardForm = ({ addOrEditCard, currentCard, onCancel, isLoading }) =>
   // Siempre renderizar como modal overlay
   return (
     <div className="card-form-overlay" onClick={onCancel}>
-      <div
-        className="card-form-modal"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="card-form-modal" onClick={(e) => e.stopPropagation()}>
         {formContent}
       </div>
     </div>
